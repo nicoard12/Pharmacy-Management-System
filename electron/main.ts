@@ -14,19 +14,21 @@ import "../electron/controller/window";
 let win: BrowserWindow | null;
 function createWindow() {
   win = new BrowserWindow({
+    width: 450,
+    height: 650, 
+    minWidth: 430,
+    minHeight: 580,
     icon: path.join(process.env.VITE_PUBLIC, "PH_MG_APP_ICON.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
     },
   });
 
+  if (VITE_DEV_SERVER_URL) win.loadURL(VITE_DEV_SERVER_URL);
+  else win.loadFile(path.join(RENDERER_DIST, "index.html"));
+
   win.setAlwaysOnTop(true);
-  
-  if (VITE_DEV_SERVER_URL) {
-    win.loadURL(VITE_DEV_SERVER_URL);
-  } else {
-    win.loadFile(path.join(RENDERER_DIST, "index.html"));
-  }
+  // Menu.setApplicationMenu(null)
 }
 
 app.on("window-all-closed", () => {

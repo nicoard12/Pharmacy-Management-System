@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { pinWindow } from "../api/window";
 
 function Header() {
   const [pinned, setPinned] = useState(true);
@@ -6,7 +7,7 @@ function Header() {
   const togglePin = () => {
     const newPinnedState = !pinned;
     setPinned(newPinnedState);
-    window.ipcRenderer.send("pin", newPinnedState);
+    pinWindow(newPinnedState);
   };
 
   return (
