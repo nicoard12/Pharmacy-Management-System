@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ClientType, createClient } from "../../api/Client";
+import { ClientType, createClient, updateClient } from "../../api/Client";
 import FormInput from "./FormInput";
 import toast from "react-hot-toast";
 import { getCleanErrorMessage } from "../../utils/error";
@@ -7,9 +7,11 @@ import { getCleanErrorMessage } from "../../utils/error";
 export function AddClient({
   close,
   refreshClients,
+  client,
 }: {
   close: () => void;
   refreshClients: (newClient: ClientType) => void;
+  client?: ClientType;
 }) {
   const [newClient, setNewClient] = useState<Omit<ClientType, "id">>({
     name: "",
@@ -23,10 +25,7 @@ export function AddClient({
   const formContainerRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const confirm = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
+  const tryAddClient = async () => {
     try {
       const createdClient = await createClient(newClient);
       refreshClients(createdClient);
@@ -39,6 +38,30 @@ export function AddClient({
     } finally {
       setLoading(false);
     }
+  };
+
+  const tryEditClient = async () => {
+    console.log("asd");
+    try {
+      const updatedClient = { id: client!.id, ...newClient };
+      await updateClient(updatedClient);
+      refreshClients(updatedClient);
+      toast.success("Cliente editado");
+      close();
+    } catch (error: any) {
+      toast.error(
+        `Error: ${getCleanErrorMessage(error) || "No se pudo editar"}`,
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const confirm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    client ? tryEditClient() : tryAddClient();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +89,18 @@ export function AddClient({
   };
 
   useEffect(() => {
+    if (client) {
+      setNewClient({
+        name: client.name,
+        affiliateNumber: client.affiliateNumber,
+        personInCharge: client.personInCharge || "",
+        phone: client.phone || "",
+        email: client.email || "",
+      });
+    }
+  }, [client]);
+
+  useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
     };
@@ -89,11 +124,14 @@ export function AddClient({
   }, []);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-    >
-      <div ref={modalRef} className="p-5 bg-[var(--card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl">
-        <h2 className="text-xl font-bold ">Nuevo Cliente</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div
+        ref={modalRef}
+        className="p-5 bg-[var(--card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl"
+      >
+        <h2 className="text-xl font-bold ">
+          {client ? "Editar" : "Nuevo"} Cliente
+        </h2>
 
         <form
           onSubmit={confirm}
@@ -109,7 +147,7 @@ export function AddClient({
               label="Nombre"
               value={newClient.name}
               handleChange={handleChange}
-              placeholder="Juan Pérez (obligatorio)"
+              placeholder="Ingresá el nombre (obligatorio)"
               required={true}
             />
             <FormInput
@@ -125,7 +163,7 @@ export function AddClient({
               label="Responsable a Cargo"
               value={newClient.personInCharge!}
               handleChange={handleChange}
-              placeholder="Pedro Pérez"
+              placeholder="Ingresá el nombre del responsable a cargo"
             />
             <FormInput
               name="phone"

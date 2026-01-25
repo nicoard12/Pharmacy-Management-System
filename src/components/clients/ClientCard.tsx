@@ -6,12 +6,13 @@ import ClientOptions from "./ClientOptions";
 import { copyToClipboard, openLink } from "../../api/window";
 import ClickTooltip from "../ClickTooltip";
 
-function ClientCard({ client }: { client: ClientType }) {
+function ClientCard({ client, handleClientDeleted, handleClientEdited }: { client: ClientType, handleClientDeleted: (deletedClientId: number) => void, handleClientEdited: (client: ClientType) => void }) {
   const goToPrescriptions = () => {
+    copyAffiliateNumber()
     openLink("https://www.imed.com.ar/AutorizadorWeb/Beneficiario/Login");
   };
 
-  const copy = () => {
+  const copyAffiliateNumber= () => {
     copyToClipboard(client.affiliateNumber);
   };
 
@@ -20,12 +21,12 @@ function ClientCard({ client }: { client: ClientType }) {
       <div className="flex flex-col">
         <div className="flex justify-between items-center gap-2">
           <h2 className="text-lg font-medium uppercase">{client.name}</h2>
-          <ClientOptions />
+          <ClientOptions client={client} handleClientDeleted={handleClientDeleted} refreshClient={handleClientEdited}/>
         </div>
 
         <div className="flex items-center gap-1 text-sm font-bold text-[var(--text-card)] tracking-wider">
           <IdentificationIcon className="w-4 h-4" />
-          <ClickTooltip onClick={copy} content="Copiado">
+          <ClickTooltip onClick={copyAffiliateNumber} content="Copiado">
             <span
               title="Click para copiar"
               className="cursor-pointer"

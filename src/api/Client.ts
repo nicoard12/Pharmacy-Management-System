@@ -20,3 +20,20 @@ export const createClient = async (
     throw error;
   }
 };
+
+export const updateClient = async (client: ClientType): Promise<void> => {
+  try {
+    await window.ipcRenderer.invoke("updateClient", client);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteClient = async (clientId: number): Promise<void> => {
+  try {
+    console.log("llega")
+    await window.ipcRenderer.invoke("deleteClient", clientId);
+  } catch (error) {
+    throw error;
+  }
+};

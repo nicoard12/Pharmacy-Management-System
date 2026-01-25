@@ -31,6 +31,7 @@ function FormInput({
         onChange={handleChange}
         placeholder={placeholder ?? ""}
         required={required}
+        spellCheck={false}
         ref={name == "name" ? firstFieldRef : null}
         className="w-full px-3 py-2 border border-[var(--card-border)] text-[var(--card-text)] rounded-lg placeholder:text-[var(--placeholder)] outline-none focus:border-blue-300"
       />

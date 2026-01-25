@@ -12,9 +12,7 @@ function Clients() {
       (client) =>
         client.name.toLowerCase().includes(search.toLowerCase()) ||
         client.affiliateNumber.toLowerCase().includes(search.toLowerCase()) ||
-        client.personInCharge?.toLowerCase().includes(search.toLowerCase()) ||
-        client.email?.toLowerCase().includes(search.toLowerCase())  ||
-        client.phone?.toLowerCase().includes(search.toLowerCase()) 
+        client.personInCharge?.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredClients(filtered);
   };
@@ -30,16 +28,47 @@ function Clients() {
     setFilteredClients((prev) => [newClient, ...prev]);
   };
 
+  const handleClientDeleted = (deletedClientId: number) => {
+    setClients((prev) =>
+      prev.filter((client) => client.id !== deletedClientId),
+    );
+    setFilteredClients((prev) =>
+      prev.filter((client) => client.id !== deletedClientId),
+    );
+  };
+
+  const handleClientEdited = (editedClient: ClientType) => {
+    setClients((prev) =>
+      prev.map((client) =>
+        client.id === editedClient.id ? editedClient : client,
+      ),
+    );
+
+    setFilteredClients((prev) =>
+      prev.map((client) =>
+        client.id === editedClient.id ? editedClient : client,
+      ),
+    );
+  };
+
   useEffect(() => {
     fetchClients();
   }, []);
 
   return (
-    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center gap-1 ">
-      <ClientToolbar onSearch={handleSearch} onClientCreated={handleClientCreated}/>
-      <div className="w-full flex flex-1 overflow-y-auto flex-col gap-2 p-1">
+    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center justify-center gap-1 ">
+      <ClientToolbar
+        onSearch={handleSearch}
+        onClientCreated={handleClientCreated}
+      />
+      <div className="w-full max-w-4xl flex flex-1 overflow-y-auto flex-col gap-2 p-1">
         {filteredClients.map((client) => (
-          <ClientCard key={client.id} client={client} />
+          <ClientCard
+            key={client.id}
+            client={client}
+            handleClientDeleted={handleClientDeleted}
+            handleClientEdited={handleClientEdited}
+          />
         ))}
       </div>
     </div>

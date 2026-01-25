@@ -17,7 +17,7 @@ function ClientToolbar({ onSearch, onClientCreated }: { onSearch: (search: strin
   }, [search]);
 
   return (
-    <div className="w-full flex items-center justify-between gap-3 p-2 rounded shadow bg-[var(--card)] border border-[var(--card-border)]">
+    <div className="w-full max-w-4xl flex items-center justify-between gap-3 p-2 rounded shadow bg-[var(--card)] border border-[var(--card-border)]">
       <Searcher value={search} onChange={setSearch} />
       <button
         onClick={() => setAddClient(true)}
