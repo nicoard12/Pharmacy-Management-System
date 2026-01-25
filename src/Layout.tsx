@@ -18,9 +18,9 @@ function Layout() {
   }, []);
 
   return (
-    <div ref={appRef} className="min-h-screen flex flex-col">
+    <div ref={appRef} className="h-screen flex flex-col">
       <Header />
-      <main className="flex flex-col flex-1 bg-[var(--primary)] text-[var(--text)]">
+      <main className="flex flex-col flex-1 overflow-hidden bg-[var(--primary)] text-[var(--text)]">
         <Outlet />
       </main>
       <Toaster

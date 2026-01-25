@@ -23,7 +23,7 @@ export function AddClient({
   const formContainerRef = useRef<HTMLDivElement>(null);
 
   const confirm = async (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
     setLoading(true);
 
     try {
@@ -56,7 +56,7 @@ export function AddClient({
     );
 
     if (e.key === "ArrowDown" && currentIndex < inputs.length - 1) {
-      e.preventDefault(); 
+      e.preventDefault();
       inputs[currentIndex + 1].focus();
     } else if (e.key === "ArrowUp" && currentIndex > 0) {
       e.preventDefault();
@@ -70,10 +70,13 @@ export function AddClient({
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, [close]);
+  }, []);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+    <div
+      onClick={close}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+    >
       <div className="p-5 bg-[var(--card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl">
         <h2 className="text-xl font-bold ">Nuevo Cliente</h2>
 

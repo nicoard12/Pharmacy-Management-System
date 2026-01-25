@@ -25,6 +25,7 @@ function Searcher({
           text-[var(--text-card)]
           border-[var(--card-border)]
           placeholder:text-[var(--placeholder)]
+          focus:border-blue-300
         "
       />
     </div>

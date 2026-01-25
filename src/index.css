@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 :root {
   --primary: theme("colors.gray.200");
   --text: theme("colors.black");
@@ -34,6 +41,6 @@
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background-color: #838383c4; 
+  background-color: #525252c4; 
   border-radius: 3px;
 }

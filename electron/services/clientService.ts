@@ -1,7 +1,7 @@
 import { ClientType } from "../database/database";
 import {
   addClient,
-  findClientsByAffiliateNumber,
+  findClientByAffiliateNumber,
   getClients,
 } from "../repository/clientRepository";
 
@@ -13,7 +13,8 @@ export const createClient = (client: ClientType) => {
   if (!client.name.trim() || !client.affiliateNumber.trim()) {
     throw new Error("Nombre y numero de afiliado requeridos");
   }
-  const existingClient = findClientsByAffiliateNumber(client.affiliateNumber);
+  const existingClient = findClientByAffiliateNumber(client.affiliateNumber);
+  console.log(existingClient);
   if (existingClient) {
     throw new Error("Ya existe un cliente con este número de afiliado");
   }

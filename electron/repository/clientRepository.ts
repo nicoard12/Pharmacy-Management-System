@@ -20,7 +20,11 @@ export const addClient = (client: ClientType) => {
   return newClient;
 };
 
-export const findClientsByAffiliateNumber = (search: string) => {
+export const findClientByAffiliateNumber = (search: string) => {
   const clients = getClients();
-  return clients.find(client => client.affiliateNumber.toUpperCase().includes(search.toUpperCase()));
+  return clients.find(
+    (client) =>
+      client.affiliateNumber.trim().toUpperCase() ===
+      search.trim().toUpperCase(),
+  );
 };

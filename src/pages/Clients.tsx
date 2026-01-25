@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ClientToolbar from "../components/clients/ClientToolbar";
-import Client from "../components/clients/Client";
+import ClientCard from "../components/clients/ClientCard";
 import { getClients, type ClientType } from "../api/Client";
 
 function Clients() {
@@ -11,7 +11,8 @@ function Clients() {
     const filtered = clients.filter(
       (client) =>
         client.name.toLowerCase().includes(search.toLowerCase()) ||
-        client.affiliateNumber.toLowerCase().includes(search.toLowerCase()),
+        client.affiliateNumber.toLowerCase().includes(search.toLowerCase()) ||
+        client.personInCharge?.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredClients(filtered);
   };
@@ -32,11 +33,11 @@ function Clients() {
   }, []);
 
   return (
-    <div className="w-full px-5 flex flex-1 flex-col items-center gap-4 mt-2">
+    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center gap-3 mt-2">
       <ClientToolbar onSearch={handleSearch} onClientCreated={handleClientCreated}/>
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-1 overflow-y-auto flex-col gap-2 p-1">
         {filteredClients.map((client) => (
-          <Client key={client.id} client={client} />
+          <ClientCard key={client.id} client={client} />
         ))}
       </div>
     </div>
