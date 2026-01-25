@@ -1,6 +1,6 @@
 function Customers() {
   return (
-    <div>
+    <div className="flex flex-1">
       customers
     </div>
   )

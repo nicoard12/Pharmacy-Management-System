@@ -5,3 +5,7 @@ export const pinWindow = (newPinnedState: boolean) => {
 export const contextmenu = () => {
   window.ipcRenderer.send("contextmenu");
 }
+
+export const openLink = (url: string) => {
+  window.ipcRenderer.send("openLink", url);
+}

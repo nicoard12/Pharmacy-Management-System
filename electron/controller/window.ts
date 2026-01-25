@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, Menu } from "electron";
+import { BrowserWindow, ipcMain, Menu, shell } from "electron";
 
 ipcMain.on("pin", (event, pinned) => {
   const win = BrowserWindow.fromWebContents(event.sender);
@@ -15,4 +15,8 @@ const contextMenu = Menu.buildFromTemplate([
 
 ipcMain.on("contextmenu", () => {
   contextMenu.popup();
+});
+
+ipcMain.on("openLink", (event, url) => {
+  shell.openExternal(url);
 });

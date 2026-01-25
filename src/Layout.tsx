@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import Header from "./components/Header"
+import Header from "./components/header/Header"
 import { useEffect, useRef } from "react";
 import { contextmenu } from "./api/window";
 
@@ -17,9 +17,9 @@ function Layout() {
   }, []);
 
   return (
-    <div ref={appRef}>
+    <div ref={appRef} className="min-h-screen flex flex-col">
         <Header />
-        <main>
+        <main className="flex flex-col flex-1 bg-gray-200 text-black dark:bg-slate-950 dark:text-white">
             <Outlet />
         </main>
     </div>

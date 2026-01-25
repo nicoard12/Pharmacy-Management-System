@@ -1,7 +1,7 @@
 function Prescriptions() {
   return (
     <div>
-      
+      asdf
     </div>
   )
 }
