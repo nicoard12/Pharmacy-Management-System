@@ -19,7 +19,7 @@ function Layout() {
   return (
     <div ref={appRef} className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex flex-col flex-1 bg-gray-200 text-black dark:bg-slate-950 dark:text-white">
+        <main className="flex flex-col flex-1 bg-[var(--primary)] text-[var(--text)]">
             <Outlet />
         </main>
     </div>

@@ -1,2 +1,20 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
+
+:root {
+  --primary: theme("colors.gray.200");
+  --secondary: theme("colors.blue.300");
+  --text-secondary: theme("colors.gray.100");
+  --card: theme("colors.white");
+  --details: theme("colors.blue.500");
+  --text: theme("colors.black");
+}
+
+.dark {
+  --primary: theme("colors.slate.950");
+  --secondary: theme("colors.slate.950");
+  --text-secondary: theme("colors.slate.500");
+  --card: theme("colors.slate.800");
+  --details: theme("colors.blue.950");
+  --text: theme("colors.slate.400");
+}

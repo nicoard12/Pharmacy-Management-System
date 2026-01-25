@@ -1,6 +1,6 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import Customers from "./pages/Customers";
+import Clients from "./pages/Clients";
 import Prescriptions from "./pages/Prescriptions";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Customers />} />
+          <Route index element={<Clients />} />
           <Route path="prescriptions" element={<Prescriptions />} />
         </Route>
       </Routes>

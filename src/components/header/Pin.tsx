@@ -20,8 +20,8 @@ function Pin() {
     hover:scale-110
     ${
       pinned
-        ? "bg-blue-500 dark:bg-blue-950"
-        : "hover:bg-blue-600/50 dark:hover:bg-blue-800/50"
+        ? "bg-[var(--details)]"
+        : ""
     }
   `}
     />

@@ -19,7 +19,7 @@ function NavOption({
     <li>
       {isLink ? (
         <button
-          className="cursor-pointer flex items-center gap-1 px-3  rounded-md text-sm font-medium transition-colors"
+          className="cursor-pointer flex items-center gap-1 px-3 text-[var(--text-secondary)] rounded-md text-sm font-medium transition-colors"
           onClick={goToLink}
         >
           {children}
@@ -33,10 +33,11 @@ function NavOption({
     px-3 py-1.5 rounded
     text-sm font-medium
     transition-colors
+    
     ${
       isActive
-        ? "bg-blue-500 dark:bg-blue-950 dark:text-slate-300"
-        : " hover:bg-blue-500  dark:hover:bg-blue-950"
+        ? "bg-[var(--details)] text-white"
+        : " hover:bg-[var(--details)] text-[var(--text-secondary)]"
     }
     `
           }
