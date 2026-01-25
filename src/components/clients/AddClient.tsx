@@ -21,6 +21,7 @@ export function AddClient({
 
   const [loading, setLoading] = useState(false);
   const formContainerRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const confirm = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,16 +69,30 @@ export function AddClient({
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
     };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        event.target instanceof Node &&
+        !modalRef.current.contains(event.target)
+      ) {
+        close();
+      }
+    };
     window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
+    window.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("keydown", handleEsc);
+    };
   }, []);
 
   return (
     <div
-      onClick={close}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
     >
-      <div className="p-5 bg-[var(--card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl">
+      <div ref={modalRef} className="p-5 bg-[var(--card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl">
         <h2 className="text-xl font-bold ">Nuevo Cliente</h2>
 
         <form
