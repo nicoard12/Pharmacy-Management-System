@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, Menu, shell } from "electron";
+import { BrowserWindow, clipboard, ipcMain, Menu, shell } from "electron";
 
 ipcMain.on("pin", (event, pinned) => {
   const win = BrowserWindow.fromWebContents(event.sender);
@@ -19,4 +19,8 @@ ipcMain.on("contextmenu", () => {
 
 ipcMain.on("openLink", (event, url) => {
   shell.openExternal(url);
+});
+
+ipcMain.on("copy", (event, text) => {
+  clipboard.writeText(text);
 });

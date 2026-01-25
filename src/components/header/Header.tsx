@@ -8,7 +8,7 @@ function Header() {
     <header
       className="
     w-full flex items-center justify-between
-    px-2 py-2
+    px-2 py-1
     text-[var(--primary)]
     bg-[var(--secondary)]
     shadow-md dark:shadow-black/30

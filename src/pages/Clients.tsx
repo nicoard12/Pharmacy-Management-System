@@ -12,7 +12,9 @@ function Clients() {
       (client) =>
         client.name.toLowerCase().includes(search.toLowerCase()) ||
         client.affiliateNumber.toLowerCase().includes(search.toLowerCase()) ||
-        client.personInCharge?.toLowerCase().includes(search.toLowerCase())
+        client.personInCharge?.toLowerCase().includes(search.toLowerCase()) ||
+        client.email?.toLowerCase().includes(search.toLowerCase())  ||
+        client.phone?.toLowerCase().includes(search.toLowerCase()) 
     );
     setFilteredClients(filtered);
   };
@@ -33,7 +35,7 @@ function Clients() {
   }, []);
 
   return (
-    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center gap-3 mt-2">
+    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center gap-1 ">
       <ClientToolbar onSearch={handleSearch} onClientCreated={handleClientCreated}/>
       <div className="w-full flex flex-1 overflow-y-auto flex-col gap-2 p-1">
         {filteredClients.map((client) => (

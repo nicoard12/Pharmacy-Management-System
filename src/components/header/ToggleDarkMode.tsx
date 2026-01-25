@@ -1,3 +1,4 @@
+import { MoonIcon, SunIcon } from "@heroicons/react/16/solid";
 import { useState, useEffect } from "react";
 
 function ToggleDarkMode() {
@@ -7,11 +8,19 @@ function ToggleDarkMode() {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
-  return (
-    <button title={dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"} className="cursor-pointer " onClick={() => setDark(!dark)}>
-      {dark ? "☀️" : "🌙"}
-    </button>
-  );
+return (
+  <button 
+    title={dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"} 
+    className="group cursor-pointer p-2 rounded-lg hover:bg-[var(--details)] transition-colors" 
+    onClick={() => setDark(!dark)}
+  >
+    {dark ? (
+      <SunIcon className="h-5 w-5 text-yellow-500 transition-transform group-hover:rotate-45" />
+    ) : (
+      <MoonIcon className="h-5 w-5 text-blue-950 transition-transform group-hover:-rotate-12" />
+    )}
+  </button>
+);
 }
 
 export default ToggleDarkMode;

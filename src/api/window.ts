@@ -9,3 +9,7 @@ export const contextmenu = () => {
 export const openLink = (url: string) => {
   window.ipcRenderer.send("openLink", url);
 }
+
+export const copyToClipboard = (text: string) => {
+  window.ipcRenderer.send("copy", text);
+}
