@@ -1,11 +1,12 @@
-import { Outlet } from "react-router-dom"
-import Header from "./components/header/Header"
+import { Outlet } from "react-router-dom";
+import Header from "./components/header/Header";
 import { useEffect, useRef } from "react";
 import { contextmenu } from "./api/window";
+import { Toaster } from "react-hot-toast";
 
 function Layout() {
-  const appRef= useRef<HTMLDivElement>(null);
-  
+  const appRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleContextMenu = (event: MouseEvent) => {
       event.preventDefault();
@@ -18,12 +19,24 @@ function Layout() {
 
   return (
     <div ref={appRef} className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex flex-col flex-1 bg-[var(--primary)] text-[var(--text)]">
-            <Outlet />
-        </main>
+      <Header />
+      <main className="flex flex-col flex-1 bg-[var(--primary)] text-[var(--text)]">
+        <Outlet />
+      </main>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "var(--card)", // O usa '#1f2937' para dark
+            color: "var(--text-card)", // O '#ffffff'
+            border: "1px solid var(--card-border)",
+            fontWeight: "500",
+          },
+        }}
+      />
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

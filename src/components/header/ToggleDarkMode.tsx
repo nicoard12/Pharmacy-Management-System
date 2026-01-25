@@ -8,7 +8,7 @@ function ToggleDarkMode() {
   }, [dark]);
 
   return (
-    <button className="cursor-pointer" onClick={() => setDark(!dark)}>
+    <button title={dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"} className="cursor-pointer " onClick={() => setDark(!dark)}>
       {dark ? "☀️" : "🌙"}
     </button>
   );

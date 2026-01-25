@@ -19,7 +19,7 @@ function NavOption({
     <li>
       {isLink ? (
         <button
-          className="cursor-pointer flex items-center gap-1 px-3 text-[var(--text-secondary)] rounded-md text-sm font-medium transition-colors"
+          className="cursor-pointer flex items-center gap-1 px-3 text-[var(--text-secondary)] hover:text-[var(--text)] rounded-md text-sm font-medium transition-colors"
           onClick={goToLink}
         >
           {children}

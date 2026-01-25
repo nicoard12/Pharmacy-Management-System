@@ -12,6 +12,7 @@
   --details: theme("colors.blue.500");
   --button: theme("colors.blue.600");
   --button-hover: theme("colors.blue.700");
+  --placeholder: theme("colors.gray.400");
 }
 
 .dark {
@@ -20,9 +21,19 @@
   --secondary: theme("colors.slate.950");
   --text-secondary: theme("colors.slate.500");
   --card: #1a2536;
-  --card-border: #334155;
+  --card-border: #283649;
   --text-card: theme("colors.slate.200");
   --details: theme("colors.blue.950");
   --button: theme("colors.blue.900");
   --button-hover: theme("colors.blue.800");
+  --placeholder: theme("colors.slate.600");
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px; 
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #838383c4; 
+  border-radius: 3px;
 }

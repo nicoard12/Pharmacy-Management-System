@@ -10,6 +10,7 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
   ? path.join(process.env.APP_ROOT, "public")
   : RENDERER_DIST;
 import "../electron/controller/window";
+import "../electron/controller/clientController";
 
 let win: BrowserWindow | null;
 function createWindow() {

@@ -11,6 +11,7 @@ function Pin() {
   
   return (
     <img
+      title={pinned ? "Desanclar ventana" : "Anclar ventana"}
       onClick={togglePin}
       src="pin.png"
       alt="pin"
