@@ -5,14 +5,28 @@ import ClientContact from "./ClientContact";
 import ClientOptions from "./ClientOptions";
 import { copyToClipboard, openLink } from "../../api/window";
 import ClickTooltip from "../ClickTooltip";
+import { useNavigate } from "react-router-dom";
 
-function ClientCard({ client, handleClientDeleted, handleClientEdited }: { client: ClientType, handleClientDeleted: (deletedClientId: number) => void, handleClientEdited: (client: ClientType) => void }) {
+function ClientCard({
+  client,
+  handleClientDeleted,
+  handleClientEdited,
+}: {
+  client: ClientType;
+  handleClientDeleted: (deletedClientId: number) => void;
+  handleClientEdited: (client: ClientType) => void;
+}) {
+  const navigate = useNavigate();
+
   const goToPrescriptions = () => {
-    copyAffiliateNumber()
+    copyAffiliateNumber();
     openLink("https://www.imed.com.ar/AutorizadorWeb/Beneficiario/Login");
+    setTimeout(() => {
+      navigate("/prescriptions"); 
+    }, 300);  //para que se vea el tooltip
   };
 
-  const copyAffiliateNumber= () => {
+  const copyAffiliateNumber = () => {
     copyToClipboard(client.affiliateNumber);
   };
 
@@ -21,16 +35,17 @@ function ClientCard({ client, handleClientDeleted, handleClientEdited }: { clien
       <div className="flex flex-col">
         <div className="flex justify-between items-center gap-2">
           <h2 className="text-lg font-medium uppercase">{client.name}</h2>
-          <ClientOptions client={client} handleClientDeleted={handleClientDeleted} refreshClient={handleClientEdited}/>
+          <ClientOptions
+            client={client}
+            handleClientDeleted={handleClientDeleted}
+            refreshClient={handleClientEdited}
+          />
         </div>
 
         <div className="flex items-center gap-1 text-sm font-bold text-[var(--text-card)] tracking-wider">
           <IdentificationIcon className="w-4 h-4" />
           <ClickTooltip onClick={copyAffiliateNumber} content="Copiado">
-            <span
-              title="Click para copiar"
-              className="cursor-pointer"
-            >
+            <span title="Click para copiar" className="cursor-pointer">
               {client.affiliateNumber}
             </span>
           </ClickTooltip>
@@ -49,12 +64,15 @@ function ClientCard({ client, handleClientDeleted, handleClientEdited }: { clien
         )}
       </div>
 
-      <button
+      <ClickTooltip
+        content="N° Afiliado copiado"
         onClick={goToPrescriptions}
-        className="cursor-pointer rounded-lg text-white bg-[var(--button)] hover:bg-[var(--button-hover)] py-2 font-semibold tracking-wide transition-colors"
+        top={true}
       >
-        Ver recetas
-      </button>
+        <button className="cursor-pointer rounded-lg text-white bg-[var(--button)] hover:bg-[var(--button-hover)] py-2 font-semibold tracking-wide transition-colors">
+          Ver recetas
+        </button>
+      </ClickTooltip>
 
       <ClientContact client={client} />
     </div>

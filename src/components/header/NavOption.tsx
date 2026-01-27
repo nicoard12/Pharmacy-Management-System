@@ -27,6 +27,7 @@ function NavOption({
       ) : (
         <NavLink
           to={to}
+          draggable={false}
           className={({ isActive }) =>
             `
     flex items-center gap-1

@@ -7,14 +7,14 @@ ipcMain.handle("getClients", () => {
   return getAllClients();
 });
 
-ipcMain.handle("createClient", (event, client: ClientType) => {
+ipcMain.handle("createClient", (_, client: ClientType) => {
   return createClient(client);
 });
 
-ipcMain.handle("updateClient", (event, client: ClientType) => {
+ipcMain.handle("updateClient", (_, client: ClientType) => {
   return updateClient(client);
 });
 
-ipcMain.handle("deleteClient", (event, clientId: number) => {
+ipcMain.handle("deleteClient", (_, clientId: number) => {
   return deleteClient(clientId);
 });

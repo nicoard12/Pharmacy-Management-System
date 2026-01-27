@@ -17,8 +17,8 @@ html, body, #root {
   --card-border: theme("colors.gray.200");
   --text-card: theme("colors.black");
   --details: theme("colors.blue.500");
-  --button: theme("colors.blue.600");
-  --button-hover: theme("colors.blue.700");
+  --button: theme("colors.blue.500");
+  --button-hover: theme("colors.blue.600");
   --placeholder: theme("colors.gray.400");
 }
 
@@ -31,8 +31,8 @@ html, body, #root {
   --card-border: #283649;
   --text-card: theme("colors.slate.200");
   --details: theme("colors.slate.800");
-  --button: theme("colors.blue.900");
-  --button-hover: theme("colors.blue.800");
+  --button: theme("colors.slate.700");
+  --button-hover: theme("colors.slate.600");
   --placeholder: theme("colors.slate.600");
 }
 

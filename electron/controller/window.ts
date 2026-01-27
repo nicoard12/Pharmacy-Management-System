@@ -17,10 +17,10 @@ ipcMain.on("contextmenu", () => {
   contextMenu.popup();
 });
 
-ipcMain.on("openLink", (event, url) => {
+ipcMain.on("openLink", (_, url) => {
   shell.openExternal(url);
 });
 
-ipcMain.on("copy", (event, text) => {
+ipcMain.on("copy", (_, text) => {
   clipboard.writeText(text);
 });

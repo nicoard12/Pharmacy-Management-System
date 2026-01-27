@@ -5,11 +5,13 @@ import "tippy.js/dist/tippy.css";
 function ClickTooltip({
   content,
   children,
-  onClick
+  onClick,
+  top = false
 }: {
   content: string;
   children: React.ReactElement;
   onClick: () => void;
+  top?: boolean;
 }) {
   const [visible, setVisible] = useState(false);
 
@@ -23,9 +25,9 @@ function ClickTooltip({
     <Tippy
       content={content}
       visible={visible}
-      placement="right"
+      placement={top ? "top" : "right"}
       animation="shift-away"
-      offset={[0, 6]}
+      offset={[0, 10]}
     >
       {cloneElement(children, {
         onClick: handleClick,
