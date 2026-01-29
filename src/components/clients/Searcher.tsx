@@ -20,10 +20,10 @@ function Searcher({
         placeholder="Buscar..."
         className="
           flex-1
-          pl-7 pr-4 py-2 rounded-lg border outline-none
-          bg-[var(--card)]
-          text-[var(--text-card)]
-          border-[var(--card-border)]
+          pl-7 pr-4 py-1 rounded-lg  outline-none
+          bg-gray-100 dark:bg-[var(--card)]
+          text-[var(--text-card)] 
+          border border-[var(--card-border)]
           placeholder:text-[var(--placeholder)]
           focus:border-blue-300
         "

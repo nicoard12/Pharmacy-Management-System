@@ -15,9 +15,9 @@ return (
     onClick={() => setDark(!dark)}
   >
     {dark ? (
-      <SunIcon className="h-5 w-5 text-yellow-500 transition-transform group-hover:rotate-45" />
+      <SunIcon className="h-5 w-5 text-gray-400 transition-transform group-hover:rotate-45" />
     ) : (
-      <MoonIcon className="h-5 w-5 text-blue-950 transition-transform group-hover:-rotate-12" />
+      <MoonIcon className="h-5 w-5 text-slate-700 transition-transform group-hover:-rotate-12" />
     )}
   </button>
 );

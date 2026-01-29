@@ -56,7 +56,7 @@ function Clients() {
   }, []);
 
   return (
-    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center justify-center gap-1 ">
+    <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center justify-center gap-1 mt-1">
       <ClientToolbar
         onSearch={handleSearch}
         onClientCreated={handleClientCreated}

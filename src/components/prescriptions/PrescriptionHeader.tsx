@@ -16,7 +16,7 @@ function PrescriptionHeader({
   prescriptions: string;
   setPrescriptions: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const [client, setClient] = useState(() => {
+  const [client] = useState(() => {
     const stored = localStorage.getItem("current_client");
     return stored ? JSON.parse(stored) : null;
   });
@@ -62,7 +62,7 @@ function PrescriptionHeader({
         Icon={ArrowPathIcon}
         text={"Limpiar"}
         handleClick={handleClean}
-        color="bg-slate-400 hover:bg-slate-500"
+        color="bg-[var(--secondary-button)] hover:bg-[var(--secondary-button-hover)]"
       />
     </header>
   );

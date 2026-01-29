@@ -1,7 +1,9 @@
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -9,7 +11,7 @@ html, body, #root {
 }
 
 :root {
-  --primary: theme("colors.gray.200");
+  --primary: theme("colors.gray.100");
   --text: theme("colors.blue.700");
   --secondary: theme("colors.blue.400");
   --text-secondary: theme("colors.gray.100");
@@ -19,6 +21,8 @@ html, body, #root {
   --details: theme("colors.blue.500");
   --button: theme("colors.blue.500");
   --button-hover: theme("colors.blue.600");
+  --secondary-button: theme("colors.slate.500");
+  --secondary-button-hover: theme("colors.slate.600");
   --placeholder: theme("colors.gray.400");
 }
 
@@ -31,16 +35,18 @@ html, body, #root {
   --card-border: #283649;
   --text-card: theme("colors.slate.200");
   --details: theme("colors.slate.800");
-  --button: theme("colors.slate.700");
-  --button-hover: theme("colors.slate.600");
+  --button: theme("colors.blue.900");
+  --button-hover: theme("colors.blue.800");
+  --secondary-button: theme("colors.slate.700");
+  --secondary-button-hover: theme("colors.slate.600");
   --placeholder: theme("colors.slate.600");
 }
 
 .overflow-y-auto::-webkit-scrollbar {
-  width: 6px; 
+  width: 6px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background-color: #525252c4; 
+  background-color: #525252c4;
   border-radius: 3px;
 }
