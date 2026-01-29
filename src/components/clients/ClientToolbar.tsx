@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AddClient from "./AddClient";
 import Searcher from "./Searcher";
 import PlusIcon from "@heroicons/react/24/outline/PlusIcon";
-import { type ClientType } from "../../api/Client";
+import { type ClientType } from "../../api/client";
 
 function ClientToolbar({ onSearch, onClientCreated }: { onSearch: (search: string) => void, onClientCreated: (newClient: ClientType) => void }) {
   const [addClient, setAddClient] = useState(false);

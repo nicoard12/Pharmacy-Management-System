@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ClientToolbar from "../components/clients/ClientToolbar";
 import ClientCard from "../components/clients/ClientCard";
-import { getClients, type ClientType } from "../api/Client";
+import { getClients, type ClientType } from "../api/client";
 
 function Clients() {
   const [clients, setClients] = useState<ClientType[]>([]);

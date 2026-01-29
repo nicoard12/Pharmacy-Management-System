@@ -10,7 +10,7 @@ html, body, #root {
 
 :root {
   --primary: theme("colors.gray.200");
-  --text: theme("colors.black");
+  --text: theme("colors.blue.700");
   --secondary: theme("colors.blue.400");
   --text-secondary: theme("colors.gray.100");
   --card: theme("colors.white");

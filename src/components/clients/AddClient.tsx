@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ClientType, createClient, updateClient } from "../../api/Client";
+import { ClientType, createClient, updateClient } from "../../api/client";
 import FormInput from "./FormInput";
 import toast from "react-hot-toast";
 import { getCleanErrorMessage } from "../../utils/error";

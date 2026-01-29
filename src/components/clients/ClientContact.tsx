@@ -4,7 +4,7 @@ import {
   PhoneIcon,
 } from "@heroicons/react/16/solid";
 import { useState } from "react";
-import { ClientType } from "../../api/Client";
+import { ClientType } from "../../api/client";
 import ClickTooltip from "../ClickTooltip";
 import { copyToClipboard } from "../../api/window";
 

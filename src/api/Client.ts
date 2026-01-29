@@ -31,7 +31,6 @@ export const updateClient = async (client: ClientType): Promise<void> => {
 
 export const deleteClient = async (clientId: number): Promise<void> => {
   try {
-    console.log("llega")
     await window.ipcRenderer.invoke("deleteClient", clientId);
   } catch (error) {
     throw error;

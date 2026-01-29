@@ -1,4 +1,4 @@
-import { type ClientType } from "../../api/Client";
+import { type ClientType } from "../../api/client";
 
 import { IdentificationIcon } from "@heroicons/react/24/outline";
 import ClientContact from "./ClientContact";

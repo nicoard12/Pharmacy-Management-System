@@ -4,7 +4,7 @@ import {
   PencilSquareIcon,
 } from "@heroicons/react/16/solid";
 import { useEffect, useRef, useState } from "react";
-import { ClientType, deleteClient } from "../../api/Client";
+import { ClientType, deleteClient } from "../../api/client";
 import { getCleanErrorMessage } from "../../utils/error";
 import { toast } from "react-hot-toast";
 import ConfirmModal from "../ConfirmModal";
