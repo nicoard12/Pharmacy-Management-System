@@ -1,15 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useMatch } from "react-router-dom";
 import { openLink } from "../../api/window";
 
 function NavOption({
   to,
   children,
   isLink = false,
+  activePattern,
 }: {
   to: string;
   children: React.ReactNode;
   isLink?: boolean;
+  activePattern?: string;
 }) {
+  const match = activePattern ? useMatch(activePattern) : null;
+
+  const isActive = !!match;
   const goToLink = () => {
     if (openLink) {
       openLink(to);
@@ -28,7 +33,7 @@ function NavOption({
         <NavLink
           to={to}
           draggable={false}
-          className={({ isActive }) =>
+          className={() =>
             `
     flex items-center gap-1
     px-3 py-1.5 rounded

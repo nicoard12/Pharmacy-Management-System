@@ -127,7 +127,7 @@ export function AddClient({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
       <div
         ref={modalRef}
-        className="p-5 bg-[var(--card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl"
+        className="p-5 bg-[var(--card)] text-[var(--text-card)] border border-[var(--card-border)] w-full max-w-lg max-h-[95vh] flex flex-col gap-3 rounded-lg shadow-2xl"
       >
         <h2 className="text-xl font-bold ">
           {client ? "Editar" : "Nuevo"} Cliente

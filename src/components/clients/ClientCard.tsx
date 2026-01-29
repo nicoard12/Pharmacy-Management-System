@@ -1,11 +1,15 @@
 import { type ClientType } from "../../api/client";
-
+import {
+  ArrowTopRightOnSquareIcon,
+  DocumentTextIcon,
+} from "@heroicons/react/16/solid";
 import { IdentificationIcon } from "@heroicons/react/24/outline";
 import ClientContact from "./ClientContact";
 import ClientOptions from "./ClientOptions";
 import { copyToClipboard, openLink } from "../../api/window";
 import ClickTooltip from "../ClickTooltip";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button";
 
 function ClientCard({
   client,
@@ -18,12 +22,15 @@ function ClientCard({
 }) {
   const navigate = useNavigate();
 
-  const goToPrescriptions = () => {
+  const goToPrescriptions = (goToLink: boolean) => {
     copyAffiliateNumber();
-    openLink("https://www.imed.com.ar/AutorizadorWeb/Beneficiario/Login");
-    setTimeout(() => {
-      navigate("/prescriptions"); 
-    }, 300);  //para que se vea el tooltip
+    localStorage.setItem("current_client", JSON.stringify(client));
+    if (goToLink) {
+      openLink("https://www.imed.com.ar/AutorizadorWeb/Beneficiario/Login");
+      setTimeout(() => {
+        navigate(`/${client.id}/prescriptions`);
+      }, 300); //para que se vea el tooltip
+    } else navigate(`/${client.id}/prescriptions`);
   };
 
   const copyAffiliateNumber = () => {
@@ -63,16 +70,19 @@ function ClientCard({
           </div>
         )}
       </div>
-
-      <ClickTooltip
-        content="N° Afiliado copiado"
-        onClick={goToPrescriptions}
-        top={true}
-      >
-        <button className="cursor-pointer rounded-lg text-white bg-[var(--button)] hover:bg-[var(--button-hover)] py-2 font-semibold tracking-wide transition-colors">
-          Ver recetas
-        </button>
-      </ClickTooltip>
+      <div className="flex items-center justify-center gap-2">
+        <Button
+          Icon={ArrowTopRightOnSquareIcon}
+          text="Obtener recetas"
+          handleClick={() => goToPrescriptions(true)}
+          toolTip="N° Afiliado copiado"
+        />
+        <Button
+          Icon={DocumentTextIcon}
+          text="Ver recetas"
+          handleClick={() => goToPrescriptions(false)}
+        />
+      </div>
 
       <ClientContact client={client} />
     </div>

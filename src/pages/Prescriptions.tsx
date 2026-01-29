@@ -5,12 +5,14 @@ import { download_docx, download_pdf } from "../api/window";
 
 function Prescriptions() {
   const [prescriptions, setPrescriptions] = useState("");
+
   const download_docx_Presicriptions = () => {
     download_docx(prescriptions, "Recetas tal cliente");
   };
-    const download_pdf_Presicriptions = () => {
+  const download_pdf_Presicriptions = () => {
     download_pdf(prescriptions, "Recetas tal cliente");
   };
+
   return (
     <div className="h-full flex flex-col gap-2 px-2 mt-1">
       <PrescriptionHeader
@@ -25,7 +27,7 @@ function Prescriptions() {
           .docx <ArrowDownTrayIcon className="h-3 w-3" />
         </button>
         <button
-          className="w-14 flex items-center justify-between gap-1 absolute top-10 right-2 bg-red-800 opacity-40 hover:opacity-90 font-medium text-xs text-white/80 rounded-md p-1.5 cursor-pointer "
+          className="w-14 flex items-center justify-between gap-1 absolute top-10 right-2 bg-red-900 opacity-40 hover:opacity-90 font-medium text-xs text-white/80 rounded-md p-1.5 cursor-pointer "
           onClick={download_pdf_Presicriptions}
         >
           .pdf <ArrowDownTrayIcon className="h-3 w-3" />
@@ -37,7 +39,7 @@ function Prescriptions() {
           border-0 outline-none resize-none 
           font-sans rounded
           placeholder:text-[var(--placeholder)]"
-          placeholder="Las recetas obtenidas aparecerán aca"
+          placeholder="Las recetas aparecerán aquí"
           value={prescriptions}
           onChange={(e) => setPrescriptions(e.target.value)}
           spellCheck={false}

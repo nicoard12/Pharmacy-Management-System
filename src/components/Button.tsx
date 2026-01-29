@@ -15,7 +15,7 @@ function Button({
   toolTip?: string;
 }) {
   return toolTip ? (
-    <ClickTooltip content={toolTip} onClick={handleClick}>
+    <ClickTooltip content={toolTip} onClick={handleClick} top={true}>
       <button
         className={`flex items-center gap-1 ${color ? color : "bg-[var(--button)] hover:bg-[var(--button-hover)]"}  font-medium text-xs text-white rounded p-1.5 cursor-pointer `}
       >
