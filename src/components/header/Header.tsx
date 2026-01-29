@@ -18,7 +18,7 @@ function Header() {
 
       <nav className="w-full">
         <ul className="flex items-center justify-center gap-2">
-          <NavOption to="/">Clientes</NavOption>
+          <NavOption to="/" activePattern="/">Clientes</NavOption>
           <NavOption to="/0/prescriptions" activePattern="/:clientid/prescriptions">Recetas</NavOption>
           <NavOption to="https://www.alfabeta.net/precio/" isLink={true}>
             <ArrowTopRightOnSquareIcon className="h-4 w-4" /> Precios{" "}

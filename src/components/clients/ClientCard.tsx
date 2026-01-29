@@ -76,11 +76,13 @@ function ClientCard({
           text="Obtener recetas"
           handleClick={() => goToPrescriptions(true)}
           toolTip="N° Afiliado copiado"
+          title="Abre www.imed.com.ar para obtener las recetas"
         />
         <Button
           Icon={DocumentTextIcon}
           text="Ver recetas"
           handleClick={() => goToPrescriptions(false)}
+          title={`Ver últimas recetas obtenidas de ${client.name}`}
         />
       </div>
 

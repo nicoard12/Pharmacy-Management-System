@@ -7,16 +7,19 @@ function Button({
   handleClick,
   color,
   toolTip,
+  title,
 }: {
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
   text: string;
   handleClick: () => void;
   color?: string;
   toolTip?: string;
+  title?: string;
 }) {
   return toolTip ? (
     <ClickTooltip content={toolTip} onClick={handleClick} top={true}>
       <button
+        title={title}
         className={`flex items-center gap-1 ${color ? color : "bg-[var(--button)] hover:bg-[var(--button-hover)]"}  font-medium text-xs text-white rounded p-1.5 cursor-pointer `}
       >
         {<Icon className="h-4" />}
@@ -27,6 +30,7 @@ function Button({
     <button
       className={`flex items-center gap-1 ${color ? color : "bg-[var(--button)] hover:bg-[var(--button-hover)]"}  font-medium text-xs text-white rounded p-1.5 cursor-pointer `}
       onClick={handleClick}
+      title={title}
     >
       {<Icon className="h-4" />}
       {text}
