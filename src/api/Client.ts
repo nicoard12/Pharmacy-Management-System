@@ -14,25 +14,30 @@ export const getClients = async (): Promise<ClientType[]> => {
 export const createClient = async (
   client: Omit<ClientType, "id">,
 ): Promise<ClientType> => {
-  try {
-    return await window.ipcRenderer.invoke("createClient", client);
-  } catch (error) {
-    throw error;
-  }
+  return await window.ipcRenderer.invoke("createClient", client);
 };
 
 export const updateClient = async (client: ClientType): Promise<void> => {
-  try {
-    await window.ipcRenderer.invoke("updateClient", client);
-  } catch (error) {
-    throw error;
-  }
+  await window.ipcRenderer.invoke("updateClient", client);
 };
 
 export const deleteClient = async (clientId: number): Promise<void> => {
-  try {
-    await window.ipcRenderer.invoke("deleteClient", clientId);
-  } catch (error) {
-    throw error;
-  }
+  await window.ipcRenderer.invoke("deleteClient", clientId);
+};
+
+export const savePrescriptions = async (
+  prescription: string,
+  clientId: number,
+): Promise<boolean> => {
+  return await window.ipcRenderer.invoke(
+    "savePrescriptions",
+    clientId,
+    prescription,
+  );
+};
+
+export const getPrescriptions = async (
+  clientId: number,
+): Promise<string> => {
+  return await window.ipcRenderer.invoke("getPrescriptions", clientId) || "";
 };

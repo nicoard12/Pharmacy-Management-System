@@ -1,49 +1,74 @@
-import { type ClientType } from "../database/database";
 import { db } from "../database/database";
+import type { ClientType } from "../database/database";
 
-export const getClients = (): ClientType[] => {
-  return db[0] as ClientType[];
+const statements = {
+  getAll: db.prepare("SELECT * FROM clients"),
+  getById: db.prepare("SELECT * FROM clients WHERE id = ?"),
+  getByAffiliate: db.prepare(
+    "SELECT * FROM clients WHERE UPPER(TRIM(affiliateNumber)) = UPPER(TRIM(?))",
+  ),
+  insert: db.prepare(`
+    INSERT INTO clients (name, affiliateNumber, personInCharge, email, phone)
+    VALUES (?, ?, ?, ?, ?)
+  `),
+  update: db.prepare(`
+    UPDATE clients
+    SET name = ?, affiliateNumber = ?, personInCharge = ?, email = ?, phone = ?, prescriptions = ?
+    WHERE id = ?
+  `),
+  delete: db.prepare("DELETE FROM clients WHERE id = ?"),
+  updatePrescriptions: db.prepare(
+    "UPDATE clients SET prescriptions = ? WHERE id = ?",
+  ),
 };
 
-export const addClient = (client: ClientType) => {
-  const clients = getClients();
-  const lastId = clients.length > 0 ? clients[clients.length - 1].id : 0;
-  const newClient = {
-    id: lastId + 1,
-    name: client.name,
-    affiliateNumber: client.affiliateNumber,
-    personInCharge: client.personInCharge || "",
-    email: client.email || "",
-    phone: client.phone || "",
-  };
-  db[0].push(newClient);
-  return newClient;
-};
+export const ClientRepository = {
+  findAll: (): ClientType[] => {
+    return statements.getAll.all() as ClientType[];
+  },
 
-export const findClientByAffiliateNumber = (search: string) => {
-  const clients = getClients();
-  return clients.find(
-    (client) =>
-      client.affiliateNumber.trim().toUpperCase() ===
-      search.trim().toUpperCase(),
-  );
-};
+  findByAffiliateNumber: (search: string): ClientType | undefined => {
+    return statements.getByAffiliate.get(search) as ClientType | undefined;
+  },
 
-export const updateC = (client: ClientType) => {
-  const clients = getClients();
-  const index = clients.findIndex((c) => c.id === client.id);
+  save: (client: Omit<ClientType, "id">): ClientType => {
+    const result = statements.insert.run(
+      client.name,
+      client.affiliateNumber,
+      client.personInCharge ?? null,
+      client.email ?? null,
+      client.phone ?? null,
+    );
 
-  if (index !== -1) {
-    // Esto sobreescribe el objeto viejo con el nuevo respetando el tipo
-    clients[index] = { ...client };
-  }
-};
+    return {
+      ...client,
+      id: Number(result.lastInsertRowid),
+    } as ClientType;
+  },
 
-export const deleteC= (clientId: number) => {
-  const clients = getClients();
-  const index = clients.findIndex((c) => c.id === clientId);
+  update: (client: ClientType): boolean => {
+    const result = statements.update.run(
+      client.name,
+      client.affiliateNumber,
+      client.personInCharge ?? null,
+      client.email ?? null,
+      client.phone ?? null,
+      client.prescriptions ?? null,
+      client.id,
+    );
+    return result.changes > 0;
+  },
 
-  if (index !== -1) {
-    clients.splice(index, 1);
-  }
+  delete: (id: number): boolean => {
+    return statements.delete.run(id).changes > 0;
+  },
+
+  setPrescriptions: (id: number, prescriptions: string): boolean => {
+    return statements.updatePrescriptions.run(prescriptions, id).changes > 0;
+  },
+
+  getPrescriptions: (id: number): string | null => {
+    const row = statements.getById.get(id) as { prescriptions?: string };
+    return row?.prescriptions ?? null;
+  },
 };

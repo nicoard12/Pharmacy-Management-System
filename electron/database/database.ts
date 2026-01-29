@@ -1,22 +1,25 @@
-export let db = [
-  [
-    {
-      id: 1,
-      name: "John Doe",
-      affiliateNumber: "AFF12345",
-      email: "random@example.com",
-      phone: "1234567890",
-    },
-    {
-      id: 2,
-      name: "Juan Carlos",
-      affiliateNumber: "AFF67890",
-      personInCharge: "Maria Garcia",
-      email: "random2@example.com",
-      phone: "321654222",
-    },
-  ],
-];
+import Database from "better-sqlite3";
+import path from "node:path";
+import { app } from "electron";
+
+const isDev = process.env.NODE_ENV === "development";
+
+const dbPath = isDev 
+  ? path.join(process.cwd(), "PMS.db") // En desarrollo: Raíz del proyecto
+  : path.join(app.getPath("userData"), "PMS.db"); // En producción: Carpeta de datos de usuario
+
+export const db = new Database(dbPath);
+db.exec(`
+  CREATE TABLE IF NOT EXISTS clients (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    affiliateNumber TEXT NOT NULL,
+    personInCharge TEXT,
+    phone TEXT,
+    email TEXT,
+    prescriptions TEXT
+  );
+`);
 
 export type ClientType = {
   id: number;
@@ -25,4 +28,5 @@ export type ClientType = {
   personInCharge?: string;
   phone?: string;
   email?: string;
+  prescriptions?: string;
 };

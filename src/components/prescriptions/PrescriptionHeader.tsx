@@ -7,7 +7,7 @@ import Button from "../Button";
 import { copyToClipboard, paste } from "../../api/window";
 import { formatPrescriptions } from "../../utils/prescriptions";
 import { useEffect, useState } from "react";
-import { getPrescriptions, savePrescriptions } from "../../api/prescription";
+import { getPrescriptions, savePrescriptions } from "../../api/client";
 
 function PrescriptionHeader({
   prescriptions,
@@ -33,14 +33,18 @@ function PrescriptionHeader({
     setPrescriptions("");
   };
 
+  const fetchPrescriptions = async () => {
+    setPrescriptions(await getPrescriptions(client.id));
+  };
+
   useEffect(() => {
     if (!client || !prescriptions) return;
-    savePrescriptions(prescriptions, client);
+    savePrescriptions(prescriptions, client.id);
   }, [prescriptions, client]);
 
   useEffect(() => {
     if (!client) return;
-    setPrescriptions(getPrescriptions(client!));
+    fetchPrescriptions();
   }, [client]);
 
   return (

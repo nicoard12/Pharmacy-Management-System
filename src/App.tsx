@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Clients />} />
-          <Route path="/:clientid/prescriptions" element={<Prescriptions />} />
+          <Route path="prescriptions" element={<Prescriptions />} />
         </Route>
       </Routes>
     </HashRouter>

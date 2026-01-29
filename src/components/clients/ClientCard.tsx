@@ -28,9 +28,9 @@ function ClientCard({
     if (goToLink) {
       openLink("https://www.imed.com.ar/AutorizadorWeb/Beneficiario/Login");
       setTimeout(() => {
-        navigate(`/${client.id}/prescriptions`);
+        navigate(`/prescriptions`);
       }, 300); //para que se vea el tooltip
-    } else navigate(`/${client.id}/prescriptions`);
+    } else navigate(`/prescriptions`);
   };
 
   const copyAffiliateNumber = () => {

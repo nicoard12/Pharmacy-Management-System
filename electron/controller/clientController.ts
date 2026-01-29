@@ -1,20 +1,30 @@
 import { ipcMain } from "electron";
-import { deleteClient, getAllClients, updateClient } from "../services/clientService";
-import { createClient } from "../services/clientService";
+import { ClientService } from "../services/clientService";
 import { ClientType } from "../database/database";
 
 ipcMain.handle("getClients", () => {
-  return getAllClients();
+  return ClientService.getAllClients();
 });
 
 ipcMain.handle("createClient", (_, client: ClientType) => {
-  return createClient(client);
+  return ClientService.createClient(client);
 });
 
 ipcMain.handle("updateClient", (_, client: ClientType) => {
-  return updateClient(client);
+  return ClientService.updateClient(client);
 });
 
 ipcMain.handle("deleteClient", (_, clientId: number) => {
-  return deleteClient(clientId);
+  return ClientService.deleteClient(clientId);
+});
+
+ipcMain.handle(
+  "savePrescriptions",
+  (_, clientId: number, prescriptions: string) => {
+    return ClientService.savePrescriptions(clientId, prescriptions);
+  },
+);
+
+ipcMain.handle("getPrescriptions", (_, clientId: number) => {
+  return ClientService.getPrescriptions(clientId);
 });
