@@ -55,10 +55,6 @@ function Clients() {
     fetchClients();
   }, []);
 
-  useEffect(() =>{
-    console.log("clients, ", clients)
-  },[clients])
-
   return (
     <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center justify-center gap-1 mt-1">
       <ClientToolbar

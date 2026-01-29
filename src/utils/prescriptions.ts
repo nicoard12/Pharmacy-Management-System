@@ -1,4 +1,5 @@
 import { ClientType } from "../api/client";
+import { getCurrentDate } from "./date";
 
 const DATE_REGEX = /\d{2}\/\d{2}\/\d{4}/;
 const sliceFromFirstDate = (lines: string[]): string[] => {
@@ -17,13 +18,7 @@ const buildClientHeader = (client: ClientType | null): string => {
   if (!client) return "-";
 
   return [
-    `*${new Date().toLocaleString("es-AR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    })}*`,
+    `*${getCurrentDate()}*`,
     `*Nombre: ${client.name.toUpperCase()}*`,
     client.personInCharge &&
       `*Persona a cargo: ${client.personInCharge.toUpperCase()}*`,
