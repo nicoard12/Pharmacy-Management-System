@@ -2,9 +2,10 @@ import {
   ClipboardDocumentListIcon,
   DocumentDuplicateIcon,
   ArrowPathIcon,
+  PhoneIcon,
 } from "@heroicons/react/16/solid";
 import Button from "../Button";
-import { copyToClipboard, paste } from "../../api/window";
+import { copyToClipboard, openLink, paste } from "../../api/window";
 import { formatPrescriptions } from "../../utils/prescriptions";
 import { useEffect, useState } from "react";
 import {
@@ -28,6 +29,11 @@ function PrescriptionHeader({
 
   const handleCopy = () => {
     copyToClipboard(prescriptions);
+  };
+
+  const sendWhatsapp = () => {
+    const message = encodeURIComponent(prescriptions);
+    openLink(`https://wa.me/${client!.phone}?text=${message}`);
   };
 
   const handleClean = () => {
@@ -55,8 +61,8 @@ function PrescriptionHeader({
   }, []);
 
   return (
-    <header className="flex items-center justify-between bg-[var(--card)] rounded p-2">
-      <div className="flex gap-1.5">
+    <header className="flex items-center gap-2 bg-[var(--card)] rounded p-2">
+
         <Button
           Icon={ClipboardDocumentListIcon}
           text={"Pegar recetas"}
@@ -68,13 +74,15 @@ function PrescriptionHeader({
           handleClick={handleCopy}
           toolTip="Copiado"
         />
-      </div>
-      <Button
-        Icon={ArrowPathIcon}
-        text={"Limpiar"}
-        handleClick={handleClean}
-        color="bg-[var(--secondary-button)] hover:bg-[var(--secondary-button-hover)]"
-      />
+        {client?.phone && (
+          <Button
+            Icon={PhoneIcon}
+            text="Enviar por Whatsapp"
+            handleClick={sendWhatsapp}
+            color="bg-green-600 hover:bg-green-700"
+          />
+        )}
+
     </header>
   );
 }
