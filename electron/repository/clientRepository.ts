@@ -12,10 +12,16 @@ const statements = {
     VALUES (?, ?, ?, ?, ?)
   `),
   update: db.prepare(`
-    UPDATE clients
-    SET name = ?, affiliateNumber = ?, personInCharge = ?, email = ?, phone = ?, prescriptions = ?
-    WHERE id = ?
-  `),
+  UPDATE clients
+  SET
+    name = COALESCE(?, name),
+    affiliateNumber = COALESCE(?, affiliateNumber),
+    personInCharge = COALESCE(?, personInCharge),
+    email = COALESCE(?, email),
+    phone = COALESCE(?, phone),
+    prescriptions = COALESCE(?, prescriptions)
+  WHERE id = ?
+`),
   delete: db.prepare("DELETE FROM clients WHERE id = ?"),
   updatePrescriptions: db.prepare(
     "UPDATE clients SET prescriptions = ? WHERE id = ?",
@@ -48,14 +54,15 @@ export const ClientRepository = {
 
   update: (client: ClientType): boolean => {
     const result = statements.update.run(
-      client.name,
-      client.affiliateNumber,
-      client.personInCharge ?? null,
-      client.email ?? null,
-      client.phone ?? null,
-      client.prescriptions ?? null,
+      client.name ?? undefined,
+      client.affiliateNumber ?? undefined,
+      client.personInCharge ?? undefined,
+      client.email ?? undefined,
+      client.phone ?? undefined,
+      client.prescriptions ?? undefined,
       client.id,
     );
+
     return result.changes > 0;
   },
 

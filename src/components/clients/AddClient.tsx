@@ -41,7 +41,6 @@ export function AddClient({
   };
 
   const tryEditClient = async () => {
-    console.log("asd");
     try {
       const updatedClient = { id: client!.id, ...newClient };
       await updateClient(updatedClient);
