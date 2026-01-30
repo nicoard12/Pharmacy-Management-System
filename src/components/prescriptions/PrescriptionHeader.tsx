@@ -1,7 +1,6 @@
 import {
   ClipboardDocumentListIcon,
   DocumentDuplicateIcon,
-  ArrowPathIcon,
   PhoneIcon,
 } from "@heroicons/react/16/solid";
 import Button from "../Button";
@@ -34,10 +33,6 @@ function PrescriptionHeader({
   const sendWhatsapp = () => {
     const message = encodeURIComponent(prescriptions);
     openLink(`https://wa.me/${client!.phone}?text=${message}`);
-  };
-
-  const handleClean = () => {
-    setPrescriptions("");
   };
 
   const fetchPrescriptions = async () => {

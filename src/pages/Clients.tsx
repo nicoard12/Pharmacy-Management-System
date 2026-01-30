@@ -12,7 +12,7 @@ function Clients() {
       (client) =>
         client.name.toLowerCase().includes(search.toLowerCase()) ||
         client.affiliateNumber.toLowerCase().includes(search.toLowerCase()) ||
-        client.personInCharge?.toLowerCase().includes(search.toLowerCase())
+        client.personInCharge?.toLowerCase().includes(search.toLowerCase()),
     );
     setFilteredClients(filtered);
   };
@@ -62,6 +62,22 @@ function Clients() {
         onClientCreated={handleClientCreated}
       />
       <div className="w-full max-w-4xl flex flex-1 overflow-y-auto flex-col gap-2 p-1">
+        {clients.length === 0 && (
+          <div className="flex flex-1 flex-col items-center justify-center text-center text-gray-500 gap-2">
+            <span className="text-lg">🗂️ Todavía no hay clientes</span>
+            <span className="text-sm">Creá tu primer cliente para empezar</span>
+          </div>
+        )}
+
+        {clients.length > 0 && filteredClients.length === 0 && (
+          <div className="flex flex-1 flex-col items-center justify-center text-center text-gray-500 gap-2">
+            <span className="text-lg">🔍 No hay resultados</span>
+            <span className="text-sm">
+              Probá con otro nombre o número de afiliado
+            </span>
+          </div>
+        )}
+
         {filteredClients.map((client) => (
           <ClientCard
             key={client.id}
