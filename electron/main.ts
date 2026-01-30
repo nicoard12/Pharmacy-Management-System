@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,7 +29,7 @@ function createWindow() {
   else win.loadFile(path.join(RENDERER_DIST, "index.html"));
 
   win.setAlwaysOnTop(true);
-  // Menu.setApplicationMenu(null)
+  Menu.setApplicationMenu(null)
 }
 
 app.on("window-all-closed", () => {
