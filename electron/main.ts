@@ -17,9 +17,9 @@ function createWindow() {
   win = new BrowserWindow({
     width: 450,
     height: 650, 
-    minWidth: 430,
-    minHeight: 580,
-    icon: path.join(process.env.VITE_PUBLIC, "PH_MG_APP_ICON.ico"),
+    minWidth: 390,
+    minHeight: 550,
+    icon: path.join(process.env.VITE_PUBLIC, "PMSICON.ico"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
     },
