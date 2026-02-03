@@ -5,8 +5,8 @@ import { app } from "electron";
 const isDev = process.env.NODE_ENV === "development";
 
 const dbPath = isDev 
-  ? path.join(process.cwd(), "PMS.db") // En desarrollo: Raíz del proyecto
-  : path.join(app.getPath("userData"), "PMS.db"); // En producción: Carpeta de datos de usuario
+  ? path.join(process.cwd(), "PMS.db")
+  : path.join(app.getPath("userData"), "PMS.db");
 
 export const db = new Database(dbPath);
 db.exec(`
