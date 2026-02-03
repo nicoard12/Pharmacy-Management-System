@@ -74,7 +74,7 @@ function PrescriptionHeader({
             Icon={PhoneIcon}
             text="Enviar por Whatsapp"
             handleClick={sendWhatsapp}
-            color="bg-green-600 hover:bg-green-700"
+            color="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-500"
           />
         )}
 
