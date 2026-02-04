@@ -15,7 +15,7 @@ Una aplicación robusta que **automatiza el formateo de datos**. Permite procesa
 
 ## Características Principales
 
-* **Smart Parsing de Recetas:** Transforma texto desestructurado en listas de medicamentos claras y organizadas.
+* **Smart Parsing de Recetas:** Transforma texto desestructurado en listas de medicamentos claras y organizadas. Para probar la app, podés usar los siguientes ejemplos de medicamentos: https://docs.google.com/document/d/1XMJD8Xfrp0JzvCgjPoPCuKDcCXuNsyiF/edit?usp=sharing&ouid=116559232899379341718&rtpof=true&sd=true 
 * **Gestión Integral de Clientes (CRUD):** Control total de registros con búsqueda avanzada por nombre, número de afiliado o responsable.
 * **Integración de Navegador:** Automatización que abre sitios externos y precarga datos en el portapapeles para búsquedas instantáneas.
 * **Generación de Documentos:** Exportación con un clic a formatos **PDF** y **DOCX**, listos para impresión.
