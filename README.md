@@ -2,6 +2,14 @@
 
 Una solución de escritorio pensada para agilizar la gestión de clientes y recetas médicas en farmacias, optimizando tiempo y reduciendo errores en el proceso de envío digital.
 
+## Capturas de Pantalla
+
+| Light Mode | Dark Mode |
+| :---: | :---: |
+| **Gestión de Clientes**<br><img width="220" src="https://github.com/user-attachments/assets/fa9213d6-f771-4164-9a95-045335b2a9f1" /><br>*Crear, editar o eliminar clientes* | **Gestión de Clientes**<br><img width="220" src="https://github.com/user-attachments/assets/277eacb7-7f88-44f7-bee9-d70db06f526f" /><br>*Mismo panel en modo oscuro* |
+| **Pantalla de Recetas**<br><img width="220" src="https://github.com/user-attachments/assets/390f1704-ca9b-44ae-8fe5-397eda4f3ea2" /><br>*Recetas formateadas* | **Pantalla de Recetas**<br><img width="220" src="https://github.com/user-attachments/assets/ed58c07f-6aac-41d9-9430-084de7eca440" /><br>*Mismo panel en modo oscuro* |
+
+
 ## El Problema y la Solución
 
 ### **El Problema** 
