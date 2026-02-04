@@ -54,3 +54,9 @@ Clona el repositorio: git clone https://github.com/nicoard12/Pharmacy-Management
 Instala las dependencias: npm install
 
 Inicia la aplicación: npm run dev
+
+## Descargas
+¿Querés probar la aplicación sin configurar el entorno de desarrollo? 
+
+> [!IMPORTANT]
+> **[Descargar última versión para Windows (v1.0.0)](https://github.com/nicoard12/Pharmacy-Management-System/releases)**
