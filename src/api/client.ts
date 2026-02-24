@@ -1,15 +1,4 @@
-import { RecallType } from "./recall";
-
-export type ClientType = {
-  id: number;
-  name: string;
-  affiliateNumber: string;
-  personInCharge?: string;
-  phone?: string;
-  email?: string;
-  recalls?: RecallType[];
-
-};
+import { ClientType } from "../types";
 
 export const getClients = async (): Promise<ClientType[]> => {
   return await window.ipcRenderer.invoke("getClients");

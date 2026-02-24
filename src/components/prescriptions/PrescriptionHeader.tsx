@@ -8,10 +8,10 @@ import { copyToClipboard, openLink, paste } from "../../api/window";
 import { formatPrescriptions } from "../../utils/prescriptions";
 import { useEffect, useState } from "react";
 import {
-  ClientType,
   getPrescriptions,
   savePrescriptions,
 } from "../../api/client";
+import { ClientType } from "../../types";
 
 function PrescriptionHeader({
   prescriptions,

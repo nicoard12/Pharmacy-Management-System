@@ -7,6 +7,12 @@ const statements = {
     VALUES (?, ?)
   `),
 
+    updateDate: db.prepare(`
+    UPDATE recalls
+    SET date = ?
+    WHERE id = ?
+  `),
+
   getById: db.prepare(`
     SELECT * FROM recalls
     WHERE id = ?
@@ -55,6 +61,16 @@ export const RecallRepository = {
 
   findAll: (): RecallType[] => {
     return statements.getAll.all() as RecallType[];
+  },
+
+  updateDate: (recallId: number, newDate: string): RecallType | undefined => {
+    const recall = statements.getById.get(recallId) as RecallType | undefined;
+
+    if (!recall) return undefined;
+
+    statements.updateDate.run(newDate, recallId);
+
+    return { ...recall, date: newDate };
   },
 
   delete: (id: number): boolean => {

@@ -1,5 +1,5 @@
 import { EnvelopeIcon, PhoneIcon, UserIcon } from "@heroicons/react/16/solid";
-import { ClientType } from "../../api/client";
+import { ClientType } from "../../types";
 import ClickTooltip from "../ClickTooltip";
 import { copyToClipboard } from "../../api/window";
 

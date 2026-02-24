@@ -2,7 +2,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import PrescriptionHeader from "../components/prescriptions/PrescriptionHeader";
 import { useEffect, useState } from "react";
 import { download_docx, download_pdf } from "../api/window";
-import { ClientType } from "../api/client";
+import { ClientType } from "../types";
 import { getCurrentDateForFile } from "../utils/date";
 
 function Prescriptions() {

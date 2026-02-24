@@ -2,21 +2,17 @@ import { useEffect, useState } from "react";
 import AddClient from "./AddClient";
 import SearchBar from "./SearchBar";
 import PlusIcon from "@heroicons/react/24/outline/PlusIcon";
-import { type ClientType } from "../../api/client";
+import { type ClientType } from "../../types";
 import Button from "../Button";
+import { useClientsDispatch } from "../../context/ClientsContext";
 
-function ClientToolbar({
-  onSearch,
-  onClientCreated,
-}: {
-  onSearch: (search: string) => void;
-  onClientCreated: (newClient: ClientType) => void;
-}) {
+function ClientToolbar({ onSearch }: { onSearch: (search: string) => void }) {
   const [addClient, setAddClient] = useState(false);
   const [search, setSearch] = useState("");
+  const dispatch = useClientsDispatch();
 
   const refreshClients = (newClient: ClientType) => {
-    onClientCreated(newClient);
+    dispatch({ type: "CLIENT_CREATED", payload: newClient });
   };
 
   useEffect(() => {

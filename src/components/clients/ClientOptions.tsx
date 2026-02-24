@@ -4,25 +4,20 @@ import {
   PencilSquareIcon,
 } from "@heroicons/react/16/solid";
 import { useEffect, useRef, useState } from "react";
-import { ClientType, deleteClient } from "../../api/client";
+import { deleteClient } from "../../api/client";
+import { ClientType } from "../../types";
 import { getCleanErrorMessage } from "../../utils/error";
 import { toast } from "react-hot-toast";
 import ConfirmModal from "../ConfirmModal";
 import { AddClient } from "./AddClient";
+import { useClientsDispatch } from "../../context/ClientsContext";
 
-function ClientOptions({
-  client,
-  handleClientDeleted,
-  refreshClient,
-}: {
-  client: ClientType;
-  handleClientDeleted: (deletedClientId: number) => void;
-  refreshClient: (updatedClient: ClientType) => void;
-}) {
+function ClientOptions({ client }: { client: ClientType }) {
   const [isOpen, setIsOpen] = useState(false);
   const optionsRef = useRef<HTMLDivElement>(null);
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+  const dispatch = useClientsDispatch();
 
   const onDelete = () => {
     setOpenDeleteConfirm(true);
@@ -37,7 +32,7 @@ function ClientOptions({
   const confirmDelete = async () => {
     try {
       await deleteClient(client.id);
-      handleClientDeleted(client.id);
+      dispatch({ type: "CLIENT_DELETED", payload: { id: client.id } });
       toast.success("Cliente eliminado con éxito");
     } catch (error) {
       toast.error(
@@ -46,6 +41,10 @@ function ClientOptions({
     } finally {
       setOpenDeleteConfirm(false);
     }
+  };
+
+  const handleClientEdited = (editedClient: ClientType) => {
+    dispatch({ type: "CLIENT_EDITED", payload: editedClient });
   };
 
   useEffect(() => {
@@ -104,7 +103,7 @@ function ClientOptions({
       {openEditModal && (
         <AddClient
           close={() => setOpenEditModal(false)}
-          refreshClients={refreshClient}
+          refreshClients={handleClientEdited}
           client={client}
         />
       )}

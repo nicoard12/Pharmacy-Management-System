@@ -1,4 +1,4 @@
-import { type ClientType } from "../../api/client";
+import { type ClientType } from "../../types";
 import {
   ArrowTopRightOnSquareIcon,
   DocumentTextIcon,
@@ -11,23 +11,15 @@ import { copyToClipboard, openLink } from "../../api/window";
 import ClickTooltip from "../ClickTooltip";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-import PickupHistory from "./PickupHistory";
+import RecallHistory from "./RecallHistory";
 import { createRecall } from "../../api/recall";
 import { getCleanErrorMessage } from "../../utils/error";
 import toast from "react-hot-toast";
+import { useClientsDispatch } from "../../context/ClientsContext";
 
-function ClientCard({
-  client,
-  handleClientDeleted,
-  handleClientEdited,
-  handleNewRecall
-}: {
-  client: ClientType;
-  handleClientDeleted: (deletedClientId: number) => void;
-  handleClientEdited: (client: ClientType) => void;
-  handleNewRecall: (clientId: number, recallId: number) => void;
-}) {
+function ClientCard({ client }: { client: ClientType }) {
   const navigate = useNavigate();
+  const dispatch = useClientsDispatch();
 
   const goToPrescriptions = (goToLink: boolean) => {
     copyAffiliateNumber();
@@ -42,8 +34,14 @@ function ClientCard({
 
   const recall = async () => {
     try {
-      const recallCreated= await createRecall(client.id);
-      handleNewRecall(client.id, recallCreated.id);
+      const recallCreated = await createRecall(client.id);
+      dispatch({
+        type: "RECALL_CREATED",
+        payload: {
+          clientId: client.id,
+          recall: { id: recallCreated.id, date: new Date().toISOString() },
+        },
+      });
       toast.success("Retiro registrado");
     } catch (error: any) {
       toast.error(
@@ -61,11 +59,7 @@ function ClientCard({
       <div className="flex flex-col">
         <div className="flex justify-between items-center gap-2">
           <h2 className="text-lg font-medium uppercase">{client.name}</h2>
-          <ClientOptions
-            client={client}
-            handleClientDeleted={handleClientDeleted}
-            refreshClient={handleClientEdited}
-          />
+          <ClientOptions client={client} />
         </div>
 
         <div className="flex items-center gap-1 text-sm font-bold text-[var(--card-text)] tracking-wider">
@@ -81,7 +75,7 @@ function ClientCard({
 
       <ClientContact client={client} />
 
-      <div className="flex items-center justify-center gap-3 sm:gap-8 md:gap-12 mt-1">
+      <div className="flex items-center justify-center gap-3 sm:gap-8 md:gap-12 my-1">
         <Button
           Icon={ArrowTopRightOnSquareIcon}
           text="Obtener recetas"
@@ -103,7 +97,7 @@ function ClientCard({
         />
       </div>
 
-      <PickupHistory recalls={client.recalls} />
+      <RecallHistory recalls={client.recalls} clientId={client.id} />
     </div>
   );
 }

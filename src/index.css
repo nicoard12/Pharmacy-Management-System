@@ -16,6 +16,7 @@ body,
   --secondary: theme("colors.blue.400");
   --text-secondary: theme("colors.gray.100");
   --card: theme("colors.white");
+  --card-secondary: theme("colors.gray.50");
   --card-border: theme("colors.gray.200");
   --card-text: theme("colors.black");
   --details: theme("colors.blue.500");
@@ -32,15 +33,15 @@ body,
   --secondary: theme("colors.slate.950");
   --text-secondary: theme("colors.slate.500");
   --card: #1a2536;
+  --card-secondary: #151f2e;
   --card-border: #283649;
   --card-text: theme("colors.slate.200");
-  --secondary-card-text:
   --details: theme("colors.slate.800");
   --button: theme("colors.blue.900");
   --button-hover: theme("colors.blue.800");
   --secondary-button: theme("colors.slate.700");
   --secondary-button-hover: theme("colors.slate.600");
-  --placeholder: theme("colors.slate.600");
+  --placeholder: theme("colors.slate.500");
 }
 
 .overflow-y-auto::-webkit-scrollbar {

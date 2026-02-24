@@ -27,7 +27,7 @@ export default function ConfirmModal({
       : "bg-blue-600 hover:bg-blue-700";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[2px] p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[1.5px] p-4">
       <div className="bg-[var(--card)] w-full max-w-sm rounded-xl shadow-xl border border-[var(--card-border)]  overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="p-6">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
