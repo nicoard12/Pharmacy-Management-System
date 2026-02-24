@@ -1,38 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ClientToolbar from "../components/clients/ClientToolbar";
 import ClientCard from "../components/clients/ClientCard";
 import { getClients, type ClientType } from "../api/client";
 
 function Clients() {
   const [clients, setClients] = useState<ClientType[]>([]);
-  const [filteredClients, setFilteredClients] = useState<ClientType[]>([]);
+  const [search, setSearch] = useState("");
 
-  const handleSearch = (search: string) => {
-    const filtered = clients.filter(
+  const filteredClients = useMemo(() => {
+    if (!search.trim()) return clients;
+
+    const lower = search.toLowerCase();
+
+    return clients.filter(
       (client) =>
-        client.name.toLowerCase().includes(search.toLowerCase()) ||
-        client.affiliateNumber.toLowerCase().includes(search.toLowerCase()) ||
-        client.personInCharge?.toLowerCase().includes(search.toLowerCase()),
+        client.name.toLowerCase().includes(lower) ||
+        client.affiliateNumber.toLowerCase().includes(lower) ||
+        client.personInCharge?.toLowerCase().includes(lower),
     );
-    setFilteredClients(filtered);
+  }, [clients, search]);
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
   };
 
   const fetchClients = async () => {
     const fetchedClients = await getClients();
     setClients(fetchedClients);
-    setFilteredClients(fetchedClients);
   };
 
   const handleClientCreated = (newClient: ClientType) => {
     setClients((prev) => [newClient, ...prev]);
-    setFilteredClients((prev) => [newClient, ...prev]);
   };
 
   const handleClientDeleted = (deletedClientId: number) => {
     setClients((prev) =>
-      prev.filter((client) => client.id !== deletedClientId),
-    );
-    setFilteredClients((prev) =>
       prev.filter((client) => client.id !== deletedClientId),
     );
   };
@@ -43,10 +45,22 @@ function Clients() {
         client.id === editedClient.id ? editedClient : client,
       ),
     );
+  };
 
-    setFilteredClients((prev) =>
+  const handleNewRecall = (clientId: number, recallId: number) => {
+    const newRecall = {
+      id: recallId,
+      date: new Date().toISOString(),
+    };
+
+    setClients((prev) =>
       prev.map((client) =>
-        client.id === editedClient.id ? editedClient : client,
+        client.id === clientId
+          ? {
+              ...client,
+              recalls: [newRecall, ...(client.recalls ?? [])],
+            }
+          : client,
       ),
     );
   };
@@ -84,6 +98,7 @@ function Clients() {
             client={client}
             handleClientDeleted={handleClientDeleted}
             handleClientEdited={handleClientEdited}
+            handleNewRecall={handleNewRecall}
           />
         ))}
       </div>

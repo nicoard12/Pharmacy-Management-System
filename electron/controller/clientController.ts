@@ -1,6 +1,6 @@
 import { ipcMain } from "electron";
 import { ClientService } from "../services/clientService";
-import { ClientType } from "../database/database";
+import { ClientType } from "../types";
 
 ipcMain.handle("getClients", () => {
   return ClientService.getAllClients();

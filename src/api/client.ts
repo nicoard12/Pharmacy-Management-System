@@ -1,7 +1,4 @@
-export type RecallType = {
-  id: number;
-  date: Date;
-};
+import { RecallType } from "./recall";
 
 export type ClientType = {
   id: number;
@@ -10,7 +7,7 @@ export type ClientType = {
   personInCharge?: string;
   phone?: string;
   email?: string;
-  recalls: RecallType[];
+  recalls?: RecallType[];
 
 };
 

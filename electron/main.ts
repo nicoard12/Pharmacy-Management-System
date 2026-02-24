@@ -11,6 +11,7 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
   : RENDERER_DIST;
 import "../electron/controller/window";
 import "../electron/controller/clientController";
+import "../electron/controller/recallController";
 
 let win: BrowserWindow | null;
 function createWindow() {
@@ -29,7 +30,7 @@ function createWindow() {
   else win.loadFile(path.join(RENDERER_DIST, "index.html"));
 
   win.setAlwaysOnTop(true);
-  Menu.setApplicationMenu(null)
+  // Menu.setApplicationMenu(null)
 }
 
 app.on("window-all-closed", () => {

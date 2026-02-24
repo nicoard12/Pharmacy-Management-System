@@ -12,15 +12,20 @@ import ClickTooltip from "../ClickTooltip";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import PickupHistory from "./PickupHistory";
+import { createRecall } from "../../api/recall";
+import { getCleanErrorMessage } from "../../utils/error";
+import toast from "react-hot-toast";
 
 function ClientCard({
   client,
   handleClientDeleted,
   handleClientEdited,
+  handleNewRecall
 }: {
   client: ClientType;
   handleClientDeleted: (deletedClientId: number) => void;
   handleClientEdited: (client: ClientType) => void;
+  handleNewRecall: (clientId: number, recallId: number) => void;
 }) {
   const navigate = useNavigate();
 
@@ -35,9 +40,17 @@ function ClientCard({
     } else navigate(`/prescriptions`);
   };
 
-  const recall = () => {
-
-  }
+  const recall = async () => {
+    try {
+      const recallCreated= await createRecall(client.id);
+      handleNewRecall(client.id, recallCreated.id);
+      toast.success("Retiro registrado");
+    } catch (error: any) {
+      toast.error(
+        `Error: ${getCleanErrorMessage(error) || "No se pudo registrar"}`,
+      );
+    }
+  };
 
   const copyAffiliateNumber = () => {
     copyToClipboard(client.affiliateNumber);
@@ -90,7 +103,7 @@ function ClientCard({
         />
       </div>
 
-      <PickupHistory />
+      <PickupHistory recalls={client.recalls} />
     </div>
   );
 }
