@@ -48,7 +48,7 @@ function Prescriptions() {
         </button>
         <textarea
           className="
-          bg-[var(--card)] text-[var(--text-card)]
+          bg-[var(--card)] text-[var(--card-text)]
           w-full h-full overflow-y-auto p-2
           border-0 outline-none resize-none 
           font-sans rounded

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AddClient from "./AddClient";
-import Searcher from "./Searcher";
+import SearchBar from "./SearchBar";
 import PlusIcon from "@heroicons/react/24/outline/PlusIcon";
 import { type ClientType } from "../../api/client";
 import Button from "../Button";
@@ -25,7 +25,7 @@ function ClientToolbar({
 
   return (
     <div className="w-full max-w-4xl flex items-center justify-between gap-3 p-2 rounded shadow bg-[var(--card)] border border-[var(--card-border)]">
-      <Searcher value={search} onChange={setSearch} />
+      <SearchBar value={search} onChange={setSearch} />
       <Button
         Icon={PlusIcon}
         text="Cliente"

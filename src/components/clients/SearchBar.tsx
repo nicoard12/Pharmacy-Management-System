@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-function Searcher({
+function SearchBar({
   value,
   onChange,
 }: {
@@ -22,7 +22,7 @@ function Searcher({
           flex-1
           pl-7 pr-4 py-1 rounded-lg  outline-none
           bg-gray-100 dark:bg-[var(--card)]
-          text-[var(--text-card)] 
+          text-[var(--card-text)] 
           border border-[var(--card-border)]
           placeholder:text-[var(--placeholder)]
           focus:border-blue-300
@@ -32,4 +32,4 @@ function Searcher({
   );
 }
 
-export default Searcher;
+export default SearchBar;

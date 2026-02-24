@@ -1,3 +1,8 @@
+export type RecallType = {
+  id: number;
+  date: Date;
+};
+
 export type ClientType = {
   id: number;
   name: string;
@@ -5,6 +10,8 @@ export type ClientType = {
   personInCharge?: string;
   phone?: string;
   email?: string;
+  recalls: RecallType[];
+
 };
 
 export const getClients = async (): Promise<ClientType[]> => {

@@ -17,7 +17,7 @@ body,
   --text-secondary: theme("colors.gray.100");
   --card: theme("colors.white");
   --card-border: theme("colors.gray.200");
-  --text-card: theme("colors.black");
+  --card-text: theme("colors.black");
   --details: theme("colors.blue.500");
   --button: theme("colors.blue.500");
   --button-hover: theme("colors.blue.600");
@@ -33,7 +33,8 @@ body,
   --text-secondary: theme("colors.slate.500");
   --card: #1a2536;
   --card-border: #283649;
-  --text-card: theme("colors.slate.200");
+  --card-text: theme("colors.slate.200");
+  --secondary-card-text:
   --details: theme("colors.slate.800");
   --button: theme("colors.blue.900");
   --button-hover: theme("colors.blue.800");

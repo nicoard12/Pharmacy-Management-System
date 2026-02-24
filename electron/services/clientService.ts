@@ -1,4 +1,4 @@
-import { ClientType } from "../database/database";
+import { ClientType } from "../types";
 import { ClientRepository } from "../repository/clientRepository";
 
 export const ClientService = {

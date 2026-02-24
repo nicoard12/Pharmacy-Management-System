@@ -19,14 +19,13 @@ db.exec(`
     email TEXT,
     prescriptions TEXT
   );
+
+  CREATE TABLE IF NOT EXISTS recalls (
+    id INTEGER PRIMARY KEY,
+    clientId INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    FOREIGN KEY (clientId) REFERENCES clients(id) ON DELETE CASCADE
+  );
 `);
 
-export type ClientType = {
-  id: number;
-  name: string;
-  affiliateNumber: string;
-  personInCharge?: string;
-  phone?: string;
-  email?: string;
-  prescriptions?: string;
-};
+

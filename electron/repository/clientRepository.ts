@@ -1,5 +1,6 @@
 import { db } from "../database/database";
-import type { ClientType } from "../database/database";
+import type { ClientType, ClientWithRecallsType, RecallType } from "../types";
+import { RecallRepository } from "./recallRepository";
 
 const statements = {
   getAll: db.prepare("SELECT * FROM clients"),
@@ -12,16 +13,16 @@ const statements = {
     VALUES (?, ?, ?, ?, ?)
   `),
   update: db.prepare(`
-  UPDATE clients
-  SET
-    name = COALESCE(?, name),
-    affiliateNumber = COALESCE(?, affiliateNumber),
-    personInCharge = COALESCE(?, personInCharge),
-    email = COALESCE(?, email),
-    phone = COALESCE(?, phone),
-    prescriptions = COALESCE(?, prescriptions)
-  WHERE id = ?
-`),
+    UPDATE clients
+    SET
+      name = COALESCE(?, name),
+      affiliateNumber = COALESCE(?, affiliateNumber),
+      personInCharge = COALESCE(?, personInCharge),
+      email = COALESCE(?, email),
+      phone = COALESCE(?, phone),
+      prescriptions = COALESCE(?, prescriptions)
+    WHERE id = ?
+  `),
   delete: db.prepare("DELETE FROM clients WHERE id = ?"),
   updatePrescriptions: db.prepare(
     "UPDATE clients SET prescriptions = ? WHERE id = ?",
@@ -29,8 +30,24 @@ const statements = {
 };
 
 export const ClientRepository = {
-  findAll: (): ClientType[] => {
-    return statements.getAll.all() as ClientType[];
+  findAll: (): ClientWithRecallsType[] => {
+    const clients = statements.getAll.all() as ClientType[];
+    const recalls = RecallRepository.findAll();
+
+    const recallsByClientId = new Map<number, RecallType[]>();
+
+    for (const r of recalls) {
+      const { clientId, ...recallWithoutClientId } = r;
+
+      const arr = recallsByClientId.get(clientId!);
+      if (arr) arr.push(recallWithoutClientId);
+      else recallsByClientId.set(clientId!, [recallWithoutClientId]);
+    }
+
+    return clients.map((c) => ({
+      ...c,
+      recalls: recallsByClientId.get(c.id) ?? [],
+    }));
   },
 
   findByAffiliateNumber: (search: string): ClientType | undefined => {
