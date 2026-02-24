@@ -1,4 +1,4 @@
-import { ClientType } from "../api/client";
+import { ClientType } from "../types";
 import { getCurrentDate } from "./date";
 
 const DATE_REGEX = /\d{2}\/\d{2}\/\d{4}/;

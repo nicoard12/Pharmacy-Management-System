@@ -5,11 +5,10 @@ ipcMain.handle("createRecall", (_, clientId: number) => {
   return RecallService.createRecall(clientId);
 });
 
-ipcMain.handle("updateRecallDate", (_, recallId: number, clientId: number, newDate: string) => {
-  return RecallService.updateRecallDate(recallId, clientId, newDate);
+ipcMain.handle("updateRecallDate", (_, recallId: number, newDate: string) => {
+  return RecallService.updateRecallDate(recallId, newDate);
 });
 
-ipcMain.handle("deleteRecall", (_, recallId: number, clientId: number) => {
-  return RecallService.deleteRecall(recallId, clientId);
+ipcMain.handle("deleteRecall", (_, recallId: number) => {
+  return RecallService.deleteRecall(recallId);
 });
-

@@ -17,6 +17,9 @@ import { getCleanErrorMessage } from "../../utils/error";
 import toast from "react-hot-toast";
 import { useClientsDispatch } from "../../context/ClientsContext";
 
+//TODO: iluminar cliente luego de 30 dias
+//TODO: Eliminar fecha retiro luego de 60 dias
+
 function ClientCard({ client }: { client: ClientType }) {
   const navigate = useNavigate();
   const dispatch = useClientsDispatch();
