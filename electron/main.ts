@@ -30,7 +30,7 @@ function createWindow() {
   else win.loadFile(path.join(RENDERER_DIST, "index.html"));
 
   win.setAlwaysOnTop(true);
-  Menu.setApplicationMenu(null)
+  // Menu.setApplicationMenu(null)
 }
 
 app.on("window-all-closed", () => {

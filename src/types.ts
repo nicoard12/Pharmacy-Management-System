@@ -13,11 +13,22 @@ export type PickupType = {
   date: string;
 };
 
+export type NormalizedClientsState = {
+  ids: number[];
+  entities: Record<number, ClientType>;
+};
+
 export type ClientsAction =
   | { type: "CLIENTS_SET"; payload: ClientType[] }
   | { type: "CLIENT_CREATED"; payload: ClientType }
   | { type: "CLIENT_DELETED"; payload: { id: number } }
   | { type: "CLIENT_EDITED"; payload: ClientType }
-  | { type: "PICKUP_CREATED"; payload: { clientId: number; pickup: { id: number; date: string } } }
-  | { type: "PICKUP_DATE_UPDATED"; payload: { clientId: number; pickupId: number; date: string } }
+  | {
+      type: "PICKUP_CREATED";
+      payload: { clientId: number; pickup: PickupType };
+    }
+  | {
+      type: "PICKUP_DATE_UPDATED";
+      payload: { clientId: number; pickupId: number; date: string };
+    }
   | { type: "PICKUP_DELETED"; payload: { clientId: number; pickupId: number } };

@@ -43,7 +43,7 @@ export function AddClient({
 
   const tryEditClient = async () => {
     try {
-      const updatedClient = { id: client!.id, ...newClient };
+      const updatedClient = { id: client!.id, ...newClient, pickups: client!.pickups ?? [] };
       await updateClient(updatedClient);
       refreshClients(updatedClient);
       toast.success("Cliente editado");
