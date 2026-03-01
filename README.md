@@ -69,6 +69,6 @@ Integración fluida con WhatsApp para el envío de recetas formateadas profesion
 
 Si no querés clonar el repositorio ni instalar dependencias, podés descargar directamente el instalador listo para usar desde GitHub Releases.
 
-👉 https://github.com/nicoard12/Pharmacy-Management-System/releases/latest
+https://github.com/nicoard12/Pharmacy-Management-System/releases/latest
 
 La versión publicada incluye el ejecutable (.exe) preparado para producción.
