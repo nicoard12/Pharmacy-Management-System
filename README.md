@@ -1,61 +1,40 @@
 # Pharmacy Management System
 
-Una solución de escritorio pensada para agilizar la gestión de clientes y recetas médicas en farmacias, optimizando tiempo y reduciendo errores en el proceso de envío digital.
-
-## Capturas de Pantalla
-
- **Gestión de Clientes**<br><img width="220" src="https://github.com/user-attachments/assets/fa9213d6-f771-4164-9a95-045335b2a9f1" /><br>*Crear, editar o eliminar clientes* 
- 
- **Pantalla de Recetas**<br><img width="220" src="https://github.com/user-attachments/assets/390f1704-ca9b-44ae-8fe5-397eda4f3ea2" /><br>*Formateo, envío y descarga de recetas* 
-
-
-## El Problema y la Solución
-
-### **El Problema** 
-Los empleados de farmacia pierden tiempo valioso copiando y formateando manualmente recetas desde sitios oficiales. Este proceso manual suele derivar en:
-* Texto desordenado y poco legible.
-* Errores humanos en la transcripción.
-* Dificultad para comunicar la información de forma clara al cliente.
-
-### **La Solución**
-Una aplicación robusta que **automatiza el formateo de datos**. Permite procesar, copiar, enviar por WhatsApp o exportar recetas a formatos profesionales en segundos, garantizando eficiencia y una imagen profesional hacia el paciente.
+Una solución de escritorio diseñada para optimizar la gestión de clientes y el procesamiento de recetas médicas, reduciendo tiempos manuales y garantizando una comunicación profesional.
 
 ## Características Principales
 
-* **Smart Parsing de Recetas:** Transforma texto desestructurado en listas de medicamentos claras y organizadas. Para probar la app, podés usar los siguientes ejemplos de medicamentos: https://docs.google.com/document/d/1XMJD8Xfrp0JzvCgjPoPCuKDcCXuNsyiF/edit?usp=sharing&ouid=116559232899379341718&rtpof=true&sd=true 
-* **Gestión Integral de Clientes (CRUD):** Control total de registros con búsqueda avanzada por nombre, número de afiliado o responsable.
-* **Integración de Navegador:** Automatización que abre sitios externos y precarga datos en el portapapeles para búsquedas instantáneas.
-* **Generación de Documentos:** Exportación con un clic a formatos **PDF** y **DOCX**, listos para impresión.
-* **Diseño Multi-tasking:** Ventana con opción "siempre visible" y layout optimizado para trabajar junto a otras herramientas.
-* **Native Dark Mode:** Interfaz moderna pensada para reducir la fatiga visual durante jornadas extensas.
+### 📋 Gestión de Afiliados
+Administración completa (CRUD) de la base de datos de clientes, permitiendo búsquedas rápidas por nombre, número de afiliado o persona responsable.
 
-## Stack Tecnológico & Arquitectura
+### 🌐 Integración con IMED
+Acceso directo al portal de autorizaciones (IMED) con copiado automático del número de afiliado en el portapapeles, agilizando el flujo de trabajo entre la aplicación y el sitio web externo.
 
-Para este proyecto, se priorizó la **robustez** y la **escalabilidad**:
+### ✍️ Procesador Inteligente de Recetas
+Motor de procesamiento que transforma texto desestructurado en listas de medicación organizadas y legibles, listas para ser enviadas o documentadas.
 
-| Componente | Tecnología |
-| :--- | :--- |
-| **Core** | [Electron](https://www.electronjs.org/) |
-| **Frontend** | [React](https://react.org/) + [TypeScript](https://www.typescriptlang.org/) |
-| **Base de Datos** | [SQLite](https://sqlite.org/) |
+### 🔔 Control de Retiros y Alertas
+Sistema de registro sistemático de entregas de medicación. Incluye alertas visuales automáticas cuando un cliente lleva más de 30 días sin realizar un retiro, facilitando el seguimiento preventivo de nuevas recetas disponibles.
 
-### **Arquitectura en Capas**
-La aplicación sigue un patrón de diseño que separa responsabilidades para facilitar el mantenimiento:
-1. **Controllers:** Manejo de eventos y comunicación IPC.
-2. **Services:** Lógica de negocio pura y reusable.
-3. **Repositories:** Abstracción del acceso a datos.
+### 📲 Comunicación Directa
+Integración fluida con WhatsApp para el envío de recetas formateadas profesionalmente, mejorando la experiencia y claridad para los pacientes.
 
-> La arquitectura está diseñada para que la migración de una base de datos local (SQLite) a una API REST en la nube requiera cambios mínimos en el código.
+### 💻 Interfaz y Productividad
+*   **Modo Siempre Visible:** Opción de mantener la ventana al frente para trabajar en paralelo con otras herramientas.
+*   **Diseño Moderno:** Interfaz responsiva con Modo Oscuro nativo para reducir la fatiga visual.
 
-## Instalación y Uso
-Clona el repositorio: git clone https://github.com/nicoard12/Pharmacy-Management-System.git
+---
 
-Instala las dependencias: npm install
+## Stack Tecnológico
+*   **Core:** Electron
+*   **Frontend:** React + TypeScript
+*   **Base de Datos:** SQLite
+*   **Estilos:** Tailwind CSS
 
-Inicia la aplicación: npm run dev
+## Instalación y Desarrollo
+1.  Clona el repositorio: `git clone https://github.com/nicoard12/Pharmacy-Management-System.git`
+2.  Instala las dependencias: `npm install`
+3.  Inicia la aplicación: `npm run dev`
 
-## Descargas
-¿Querés probar la aplicación sin configurar el entorno de desarrollo? 
-
-> [!IMPORTANT]
-> **[Descargar última versión para Windows (v1.0.0)](https://github.com/nicoard12/Pharmacy-Management-System/releases)**
+---
+*Desarrollado para ofrecer eficiencia y precisión en el entorno farmacéutico.*

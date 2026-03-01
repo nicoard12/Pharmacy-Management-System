@@ -14,14 +14,12 @@ function Clients() {
   const filteredClients = useMemo(() => {
     let result = clients;
 
-    // Filter by Alerts
     if (showOnlyAlerts) {
       result = result.filter((client) =>
         client.pickups?.some((pickup) => isOldDate(pickup.date)),
       );
     }
 
-    // Filter by Search
     if (!search.trim()) return result;
 
     const lower = search.toLowerCase();
