@@ -8,7 +8,7 @@ function SearchBar({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="relative flex flex-1">
+    <div className="relative flex flex-1 min-w-0">
       <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
         <MagnifyingGlassIcon className="h-4 w-4 text-[var(--placeholder)]" />
       </div>
@@ -20,6 +20,7 @@ function SearchBar({
         placeholder="Buscar..."
         className="
           flex-1
+          min-w-0
           pl-7 pr-4 py-1 rounded-lg  outline-none
           bg-gray-100 dark:bg-[var(--card)]
           text-[var(--card-text)] 

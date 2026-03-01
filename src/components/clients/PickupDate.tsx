@@ -22,17 +22,25 @@ function PickupDate({
 
   const isIlluminated = isOldDate(pickup.date);
 
-  const handleCommit = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isoString = new Date(e.target.value).toISOString();
+  const handleCommit = async (value: string) => {
+    const isoString = new Date(value).toISOString();
+
     try {
       await updatePickupDate(pickup.id, isoString);
     } catch (error) {
       console.log("Error al actualizar la fecha del retiro:", error);
     }
+
     dispatch({
       type: "PICKUP_DATE_UPDATED",
       payload: { clientId, pickupId: pickup.id, date: isoString },
     });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleCommit(e.currentTarget.value);
+    }
   };
 
   const deletePickup = async () => {
@@ -62,15 +70,16 @@ function PickupDate({
       >
         <TrashIcon
           className={`w-4.5 h-4.5 transition-colors group-hover:text-red-500 ${isIlluminated
-              ? "text-emerald-700 dark:text-emerald-400"
-              : "text-gray-400"
+            ? "text-emerald-700 dark:text-emerald-400"
+            : "text-gray-400"
             }`}
         />
       </button>
       <input
         type="datetime-local"
         value={date}
-        onBlur={handleCommit}
+        onBlur={() => handleCommit(date)}
+        onKeyDown={handleKeyDown}
         onChange={(e) => setDate(e.target.value)}
         className={`w-full text-sm rounded-md px-3 py-1.5 outline-none transition-colors border ${isIlluminated
           ? "bg-white dark:bg-black/20 border-emerald-200 dark:border-emerald-500/30 text-emerald-900 dark:text-emerald-100 ring-emerald-400"

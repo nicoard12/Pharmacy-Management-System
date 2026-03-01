@@ -3,24 +3,36 @@ import ClientToolbar from "../components/clients/ClientToolbar";
 import ClientCard from "../components/clients/ClientCard";
 import { getClients } from "../api/client";
 import { useClients, useClientsDispatch } from "../context/ClientsContext";
+import { isOldDate } from "../utils/date";
 
 function Clients() {
   const clients = useClients();
   const dispatch = useClientsDispatch();
   const [search, setSearch] = useState("");
+  const [showOnlyAlerts, setShowOnlyAlerts] = useState(false);
 
   const filteredClients = useMemo(() => {
-    if (!search.trim()) return clients;
+    let result = clients;
+
+    // Filter by Alerts
+    if (showOnlyAlerts) {
+      result = result.filter((client) =>
+        client.pickups?.some((pickup) => isOldDate(pickup.date)),
+      );
+    }
+
+    // Filter by Search
+    if (!search.trim()) return result;
 
     const lower = search.toLowerCase();
 
-    return clients.filter(
+    return result.filter(
       (client) =>
         client.name.toLowerCase().includes(lower) ||
         client.affiliateNumber.toLowerCase().includes(lower) ||
         (client.personInCharge?.toLowerCase().includes(lower) ?? false),
     );
-  }, [clients, search]);
+  }, [clients, search, showOnlyAlerts]);
 
   const handleSearch = (value: string) => setSearch(value);
 
@@ -40,7 +52,10 @@ function Clients() {
 
   return (
     <div className="w-full px-2 flex-1 flex flex-col overflow-hidden items-center justify-center gap-1 mt-1">
-      <ClientToolbar onSearch={handleSearch} />
+      <ClientToolbar
+        onSearch={handleSearch}
+        onFilterAlertsChange={setShowOnlyAlerts}
+      />
 
       <div className="w-full max-w-4xl flex flex-1 overflow-y-auto flex-col gap-2 p-1">
         {clients.length === 0 && (
@@ -53,9 +68,6 @@ function Clients() {
         {clients.length > 0 && filteredClients.length === 0 && (
           <div className="flex flex-1 flex-col items-center justify-center text-center text-gray-500 gap-2">
             <span className="text-lg">🔍 No hay resultados</span>
-            <span className="text-sm">
-              Probá con otro nombre o número de afiliado
-            </span>
           </div>
         )}
 

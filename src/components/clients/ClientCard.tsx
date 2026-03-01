@@ -20,8 +20,6 @@ import { useClientsDispatch } from "../../context/ClientsContext";
 import { useMemo, useState } from "react";
 import { isOldDate } from "../../utils/date";
 
-//TODO: Eliminar fecha retiro luego de 60 dias
-
 function ClientCard({ client }: { client: ClientType }) {
   const navigate = useNavigate();
   const dispatch = useClientsDispatch();
@@ -108,7 +106,7 @@ function ClientCard({ client }: { client: ClientType }) {
       </div>
 
       {isIlluminated && (
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--illuminate-alert-bg)] border border-[var(--illuminate-border)] rounded-lg text-[var(--illuminate-text)] text-xs font-semibold my-1 animate-pulse-subtle">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--illuminate-bg)] border border-[var(--illuminate-border)] rounded-lg text-[var(--illuminate-text)] text-xs font-semibold my-1 animate-pulse-subtle">
           <InformationCircleIcon className="w-4 h-4 shrink-0" />
           <span>Nuevas recetas disponibles</span>
         </div>
