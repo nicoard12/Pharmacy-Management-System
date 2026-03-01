@@ -38,7 +38,9 @@ Administración completa (CRUD) de la base de datos de clientes, permitiendo bú
 Acceso directo al portal de autorizaciones (IMED) con copiado automático del número de afiliado en el portapapeles, agilizando el flujo de trabajo entre la aplicación y el sitio web externo.
 
 ### ✍️ Procesador Inteligente de Recetas
-Motor de procesamiento que transforma texto desestructurado en listas de medicación organizadas y legibles, listas para ser enviadas o documentadas.
+Transforma texto desestructurado en listas de medicación organizadas y legibles, listas para ser enviadas o documentadas.
+#### Recetas de prueba:
+https://docs.google.com/document/d/1XMJD8Xfrp0JzvCgjPoPCuKDcCXuNsyiF/edit  
 
 ### 🔔 Control de Retiros y Alertas
 Sistema de registro sistemático de entregas de medicación. Incluye alertas visuales automáticas cuando un cliente lleva más de 30 días sin realizar un retiro, facilitando el seguimiento preventivo de nuevas recetas disponibles.
@@ -63,5 +65,10 @@ Integración fluida con WhatsApp para el envío de recetas formateadas profesion
 2.  Instala las dependencias: `npm install`
 3.  Inicia la aplicación: `npm run dev`
 
----
-*Desarrollado para ofrecer eficiencia y precisión en el entorno farmacéutico.*
+## 📦 Release
+
+Si no querés clonar el repositorio ni instalar dependencias, podés descargar directamente el instalador listo para usar desde GitHub Releases.
+
+👉 https://github.com/nicoard12/Pharmacy-Management-System/releases/latest
+
+La versión publicada incluye el ejecutable (.exe) preparado para producción.
