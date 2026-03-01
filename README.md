@@ -12,6 +12,28 @@ En farmacias que trabajan con sistemas de autorización como IMED, gran parte de
 
 Esto genera pérdida de tiempo, errores evitables y una experiencia poco profesional.
 El sistema centraliza y automatiza este flujo en una única herramienta de escritorio.
+
+## 📸 Capturas de Pantalla
+### Vista Principal
+<p align="center">
+  <img src="screenshots/Dashboard.png" width="500"/>
+</p>
+
+### Procesador de Recetas
+<p align="center">
+  <img src="screenshots/Prescriptions.png" width="500"/>
+</p>
+
+### Sistema de Alertas
+<p align="center">
+  <img src="screenshots/Filtered.png" width="500"/>
+</p>
+
+### Dark Mode
+<p align="center">
+  <img src="screenshots/Dark.png" width="500"/>
+</p>
+
 ## Características Principales
 
 ### 📋 Gestión de Afiliados
