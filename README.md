@@ -2,6 +2,16 @@
 
 Una solución de escritorio diseñada para optimizar la gestión de clientes y el procesamiento de recetas médicas, reduciendo tiempos manuales y garantizando una comunicación profesional.
 
+## Problema que Resuelve
+En farmacias que trabajan con sistemas de autorización como IMED, gran parte del flujo diario implica:
+- Búsqueda manual de afiliados
+- Copiado repetitivo de datos
+- Envío de recetas en formatos informales o poco claros
+- Seguimiento informal de retiros
+- Comunicación poco estandarizada con pacientes
+
+Esto genera pérdida de tiempo, errores evitables y una experiencia poco profesional.
+El sistema centraliza y automatiza este flujo en una única herramienta de escritorio.
 ## Características Principales
 
 ### 📋 Gestión de Afiliados
