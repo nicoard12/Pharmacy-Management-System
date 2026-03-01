@@ -15,24 +15,19 @@ El sistema centraliza y automatiza este flujo en una única herramienta de escri
 
 ## 📸 Capturas de Pantalla
 ### Vista Principal
-<p align="center">
-  <img src="screenshots/Dashboard.png" width="500"/>
-</p>
+  <img src="screenshots/Dashboard.png" width="400"/>
 
 ### Procesador de Recetas
-<p align="center">
-  <img src="screenshots/Prescriptions.png" width="500"/>
-</p>
+  <img src="screenshots/Prescriptions.png" width="400"/>
 
 ### Sistema de Alertas
-<p align="center">
-  <img src="screenshots/Filtered.png" width="500"/>
-</p>
+
+  <img src="screenshots/Filtered.png" width="400"/>
+
 
 ### Dark Mode
-<p align="center">
-  <img src="screenshots/Dark.png" width="500"/>
-</p>
+
+  <img src="screenshots/Dark.png" width="400"/>
 
 ## Características Principales
 
