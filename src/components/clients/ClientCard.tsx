@@ -4,6 +4,7 @@ import {
   DocumentTextIcon,
   IdentificationIcon,
   CheckCircleIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/16/solid";
 import ClientContact from "./ClientContact";
 import ClientOptions from "./ClientOptions";
@@ -16,13 +17,19 @@ import { createPickup } from "../../api/pickup";
 import { getCleanErrorMessage } from "../../utils/error";
 import toast from "react-hot-toast";
 import { useClientsDispatch } from "../../context/ClientsContext";
+import { useMemo, useState } from "react";
+import { isOldDate } from "../../utils/date";
 
-//TODO: iluminar cliente luego de 30 dias
 //TODO: Eliminar fecha retiro luego de 60 dias
 
 function ClientCard({ client }: { client: ClientType }) {
   const navigate = useNavigate();
   const dispatch = useClientsDispatch();
+  const [showHistory, setShowHistory] = useState(false);
+
+  const isIlluminated = useMemo(() => {
+    return (client.pickups ?? []).some((p) => isOldDate(p.date));
+  }, [client.pickups]);
 
   const goToPrescriptions = (goToLink: boolean) => {
     copyAffiliateNumber();
@@ -45,7 +52,7 @@ function ClientCard({ client }: { client: ClientType }) {
           pickup: { id: pickupCreated.id, date: new Date().toISOString() },
         },
       });
-      toast.success("Retiro registrado");
+      setShowHistory(true);
     } catch (error: any) {
       toast.error(
         `Error: ${getCleanErrorMessage(error) || "No se pudo registrar"}`,
@@ -58,7 +65,7 @@ function ClientCard({ client }: { client: ClientType }) {
   };
 
   return (
-    <div className="flex flex-col gap-1 bg-[var(--card)] text-[var(--card-text)] border border-[var(--card-border)] p-4 py-2 pb-3 rounded-xl shadow-sm hover:border-blue-400/50 ">
+    <div className="flex flex-col gap-1 bg-[var(--card)] text-[var(--card-text)] border border-[var(--card-border)] p-4 py-2 pb-3 rounded-xl shadow-sm hover:border-blue-400/50 transition-all duration-300">
       <div className="flex flex-col">
         <div className="flex justify-between items-center gap-2">
           <h2 className="text-lg font-medium uppercase">{client.name}</h2>
@@ -100,7 +107,14 @@ function ClientCard({ client }: { client: ClientType }) {
         />
       </div>
 
-      <PickupHistory pickups={client.pickups} clientId={client.id} />
+      {isIlluminated && (
+        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--illuminate-alert-bg)] border border-[var(--illuminate-border)] rounded-lg text-[var(--illuminate-text)] text-xs font-semibold my-1 animate-pulse-subtle">
+          <InformationCircleIcon className="w-4 h-4 shrink-0" />
+          <span>Nuevas recetas disponibles</span>
+        </div>
+      )}
+
+      <PickupHistory showHistory={showHistory} setShowHistory={setShowHistory} pickups={client.pickups} clientId={client.id} />
     </div>
   );
 }

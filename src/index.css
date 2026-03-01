@@ -25,6 +25,10 @@ body,
   --secondary-button: theme("colors.slate.500");
   --secondary-button-hover: theme("colors.slate.600");
   --placeholder: theme("colors.gray.400");
+  --illuminate-bg: theme("colors.emerald.100");
+  --illuminate-alert-bg: theme("colors.emerald.200");
+  --illuminate-border: theme("colors.emerald.400");
+  --illuminate-text: theme("colors.emerald.700");
 }
 
 .dark {
@@ -42,6 +46,18 @@ body,
   --secondary-button: theme("colors.slate.700");
   --secondary-button-hover: theme("colors.slate.600");
   --placeholder: theme("colors.slate.500");
+  --illuminate-bg: rgba(9, 228, 169, 0.15);
+  --illuminate-alert-bg: rgba(0, 0, 0, 0.2);
+  --illuminate-border: rgba(16, 185, 129, 0.4);
+  --illuminate-text: theme("colors.emerald.400");
+}
+
+@theme {
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  --animate-pulse-subtle: pulse-subtle 2s infinite ease-in-out;
 }
 
 .overflow-y-auto::-webkit-scrollbar {

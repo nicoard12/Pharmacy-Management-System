@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { PickupType } from "../../types";
 import PickupDate from "./PickupDate";
 
-function PickupHistory({ pickups, clientId }: { pickups?: PickupType[]; clientId: number }) {
-  const [showHistory, setShowHistory] = useState(false);
+function PickupHistory({ pickups, clientId, showHistory, setShowHistory }: { pickups?: PickupType[]; clientId: number, showHistory: boolean, setShowHistory: React.Dispatch<React.SetStateAction<boolean>> }) {
+  
 
   return (
     <div className="flex flex-col gap-0.5">
       <button
         type="button"
-        onClick={() => setShowHistory((v) => !v)}
+        onClick={() => setShowHistory(!showHistory)}
         className="group flex w-fit items-center gap-1.5 rounded-md py-1
                text-xs text-[var(--placeholder)] select-none
                hover:text-[var(--card-text)] cursor-pointer"

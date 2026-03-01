@@ -21,3 +21,16 @@ export function formatToDateTimeLocal(dateString: string) {
     date.getDate(),
   )}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
+
+export function isOldDate(dateString: string, days: number = 30): boolean {
+  const pickupDate = new Date(dateString);
+  pickupDate.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const diffTime = today.getTime() - pickupDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  return diffDays >= days;
+}
