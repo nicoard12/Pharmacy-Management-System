@@ -36,7 +36,7 @@ function ClientCard({ client }: { client: ClientType }) {
       openLink("https://www.imed.com.ar/AutorizadorWeb/Beneficiario/Login");
       setTimeout(() => {
         navigate(`/prescriptions`);
-      }, 300); //para que se vea el tooltip
+      }, 300); 
     } else navigate(`/prescriptions`);
   };
 
