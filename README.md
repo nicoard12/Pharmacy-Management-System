@@ -14,20 +14,14 @@ Esto genera pérdida de tiempo, errores evitables y una experiencia poco profesi
 El sistema centraliza y automatiza este flujo en una única herramienta de escritorio.
 
 ## 📸 Capturas de Pantalla
-### Vista Principal
-  <img src="screenshots/Dashboard.png" width="400"/>
 
-### Procesador de Recetas
-  <img src="screenshots/Prescriptions.png" width="400"/>
+| Dashboard | Filtrar por recetas disponibles |
+|------------|------------|
+| <img src="screenshots/Dashboard.png" width="400"/> | <img src="screenshots/Filtered.png" width="400"/> |
 
-### Sistema de Alertas
-
-  <img src="screenshots/Filtered.png" width="400"/>
-
-
-### Dark Mode
-
-  <img src="screenshots/Dark.png" width="400"/>
+| Procesamiento de Recetas | Dark Mode |
+|------------|------------|
+| <img src="screenshots/Prescriptions.png" width="400"/> | <img src="screenshots/Dark.png" width="400"/> |
 
 ## Características Principales
 
