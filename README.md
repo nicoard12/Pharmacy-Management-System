@@ -2,7 +2,7 @@
 
 Una solución de escritorio diseñada para optimizar la gestión de clientes y el procesamiento de recetas médicas, reduciendo tiempos manuales y garantizando una comunicación profesional.
 
-## Problema que Resuelve
+## Problema que resuelve
 En farmacias que trabajan con sistemas de autorización como IMED, gran parte del flujo diario implica:
 - Búsqueda manual de afiliados
 - Copiado repetitivo de datos
@@ -13,7 +13,7 @@ En farmacias que trabajan con sistemas de autorización como IMED, gran parte de
 Esto genera pérdida de tiempo, errores evitables y una experiencia poco profesional.
 El sistema centraliza y automatiza este flujo en una única herramienta de escritorio.
 
-## 📸 Capturas de Pantalla
+## 📸 Capturas de pantalla
 
 | Dashboard | Filtrar por recetas disponibles |
 |------------|------------|
@@ -23,23 +23,23 @@ El sistema centraliza y automatiza este flujo en una única herramienta de escri
 |------------|------------|
 | <img src="screenshots/Prescriptions.png" width="400"/> | <img src="screenshots/Dark.png" width="400"/> |
 
-## Características Principales
+## Características principales
 
-### 📋 Gestión de Afiliados
+### 📋 Gestión de afiliados
 Administración completa (CRUD) de la base de datos de clientes, permitiendo búsquedas rápidas por nombre, número de afiliado o persona responsable.
 
 ### 🌐 Integración con IMED
 Acceso directo al portal de autorizaciones (IMED) con copiado automático del número de afiliado en el portapapeles, agilizando el flujo de trabajo entre la aplicación y el sitio web externo.
 
-### ✍️ Procesador Inteligente de Recetas
+### ✍️ Procesador inteligente de recetas
 Transforma texto desestructurado en listas de medicación organizadas y legibles, listas para ser enviadas o documentadas.
 #### Recetas de prueba:
 https://docs.google.com/document/d/1XMJD8Xfrp0JzvCgjPoPCuKDcCXuNsyiF/edit  
 
-### 🔔 Control de Retiros y Alertas
+### 🔔 Control de retiros y alertas
 Sistema de registro sistemático de entregas de medicación. Incluye alertas visuales automáticas cuando un cliente lleva más de 30 días sin realizar un retiro, facilitando el seguimiento preventivo de nuevas recetas disponibles.
 
-### 📲 Comunicación Directa
+### 📲 Comunicación directa
 Integración fluida con WhatsApp para el envío de recetas formateadas profesionalmente, mejorando la experiencia y claridad para los pacientes.
 
 ### 💻 Interfaz y Productividad
@@ -48,7 +48,7 @@ Integración fluida con WhatsApp para el envío de recetas formateadas profesion
 
 ---
 
-## Stack Tecnológico
+## Stack tecnológico
 *   **Core:** Electron
 *   **Frontend:** React + TypeScript
 *   **Base de Datos:** SQLite
@@ -61,8 +61,8 @@ Integración fluida con WhatsApp para el envío de recetas formateadas profesion
 
 ## 📦 Release
 
-Si no querés clonar el repositorio ni instalar dependencias, podés descargar directamente el instalador listo para usar desde GitHub Releases.
+Para utilizar la aplicación sin necesidad de clonar el repositorio ni instalar dependencias, se puede descargar directamente el instalador desde GitHub Releases:
 
 https://github.com/nicoard12/Pharmacy-Management-System/releases/latest
 
-La versión publicada incluye el ejecutable (.exe) preparado para producción.
+La versión publicada incluye el ejecutable (.exe) listo para producción. Solo requiere descarga e instalación para comenzar a utilizar el sistema.
