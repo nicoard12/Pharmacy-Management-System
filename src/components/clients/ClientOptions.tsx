@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { deleteClient } from "../../api/client";
 import { ClientType } from "../../types";
 import { getCleanErrorMessage } from "../../utils/error";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import ConfirmModal from "../ConfirmModal";
 import { AddClient } from "./AddClient";
 import { useClientsDispatch } from "../../context/ClientsContext";

@@ -15,7 +15,7 @@ import Button from "../Button";
 import PickupHistory from "./PickupHistory";
 import { createPickup } from "../../api/pickup";
 import { getCleanErrorMessage } from "../../utils/error";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useClientsDispatch } from "../../context/ClientsContext";
 import { useMemo, useState } from "react";
 import { isOldDate } from "../../utils/date";
