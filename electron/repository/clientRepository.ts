@@ -1,6 +1,6 @@
 import { db } from "../database/database";
-import type { ClientType, ClientWithRecallsType, RecallType } from "../types";
-import { RecallRepository } from "./recallRepository";
+import type { ClientType, ClientWithPickupsType, PickupType } from "../types";
+import { PickupRepository } from "./pickupRepository";
 
 const statements = {
   getAll: db.prepare("SELECT * FROM clients"),
@@ -30,23 +30,23 @@ const statements = {
 };
 
 export const ClientRepository = {
-  findAll: (): ClientWithRecallsType[] => {
+  findAll: (): ClientWithPickupsType[] => {
     const clients = statements.getAll.all() as ClientType[];
-    const recalls = RecallRepository.findAll();
+    const pickups = PickupRepository.findAll();
 
-    const recallsByClientId = new Map<number, RecallType[]>();
+    const pickupsByClientId = new Map<number, PickupType[]>();
 
-    for (const r of recalls) {
-      const { clientId, ...recallWithoutClientId } = r;
+    for (const p of pickups) {
+      const { clientId, ...pickupWithoutClientId } = p;
 
-      const arr = recallsByClientId.get(clientId!);
-      if (arr) arr.push(recallWithoutClientId);
-      else recallsByClientId.set(clientId!, [recallWithoutClientId]);
+      const arr = pickupsByClientId.get(clientId!);
+      if (arr) arr.push(pickupWithoutClientId);
+      else pickupsByClientId.set(clientId!, [pickupWithoutClientId]);
     }
 
     return clients.map((c) => ({
       ...c,
-      recalls: recallsByClientId.get(c.id) ?? [],
+      pickups: pickupsByClientId.get(c.id) ?? [],
     }));
   },
 

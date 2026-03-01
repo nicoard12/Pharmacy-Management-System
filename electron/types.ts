@@ -8,12 +8,12 @@ export type ClientType = {
   prescriptions?: string;
 };
 
-export type RecallType = {
+export type PickupType = {
   id: number;
   clientId?: number;
   date: string;
 }; 
 
-export type ClientWithRecallsType = ClientType & {
-  recalls: RecallType[];
+export type ClientWithPickupsType = ClientType & {
+  pickups: PickupType[];
 };

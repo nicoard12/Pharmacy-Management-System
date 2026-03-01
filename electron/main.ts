@@ -11,7 +11,7 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
   : RENDERER_DIST;
 import "../electron/controller/window";
 import "../electron/controller/clientController";
-import "../electron/controller/recallController";
+import "../electron/controller/pickupController";
 
 let win: BrowserWindow | null;
 function createWindow() {

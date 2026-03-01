@@ -11,8 +11,8 @@ import { copyToClipboard, openLink } from "../../api/window";
 import ClickTooltip from "../ClickTooltip";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-import RecallHistory from "./RecallHistory";
-import { createRecall } from "../../api/recall";
+import PickupHistory from "./PickupHistory";
+import { createPickup } from "../../api/pickup";
 import { getCleanErrorMessage } from "../../utils/error";
 import toast from "react-hot-toast";
 import { useClientsDispatch } from "../../context/ClientsContext";
@@ -35,14 +35,14 @@ function ClientCard({ client }: { client: ClientType }) {
     } else navigate(`/prescriptions`);
   };
 
-  const recall = async () => {
+  const handlePickup = async () => {
     try {
-      const recallCreated = await createRecall(client.id);
+      const pickupCreated = await createPickup(client.id);
       dispatch({
-        type: "RECALL_CREATED",
+        type: "PICKUP_CREATED",
         payload: {
           clientId: client.id,
-          recall: { id: recallCreated.id, date: new Date().toISOString() },
+          pickup: { id: pickupCreated.id, date: new Date().toISOString() },
         },
       });
       toast.success("Retiro registrado");
@@ -95,12 +95,12 @@ function ClientCard({ client }: { client: ClientType }) {
         <Button
           Icon={CheckCircleIcon}
           text="Retira"
-          handleClick={recall}
+          handleClick={handlePickup}
           color="bg-[var(--secondary-button)] hover:bg-[var(--secondary-button-hover)]"
         />
       </div>
 
-      <RecallHistory recalls={client.recalls} clientId={client.id} />
+      <PickupHistory pickups={client.pickups} clientId={client.id} />
     </div>
   );
 }

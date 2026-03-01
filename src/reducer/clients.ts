@@ -19,34 +19,34 @@ export function clientsReducer(
         c.id === action.payload.id ? action.payload : c,
       );
 
-    case "RECALL_CREATED":
+    case "PICKUP_CREATED":
       return state.map((c) =>
         c.id === action.payload.clientId
-          ? { ...c, recalls: [action.payload.recall, ...(c.recalls ?? [])] }
+          ? { ...c, pickups: [action.payload.pickup, ...(c.pickups ?? [])] }
           : c,
       );
 
-    case "RECALL_DATE_UPDATED":
+    case "PICKUP_DATE_UPDATED":
       return state.map((c) =>
         c.id === action.payload.clientId
           ? {
               ...c,
-              recalls: (c.recalls ?? []).map((r) =>
-                r.id === action.payload.recallId
-                  ? { ...r, date: action.payload.date }
-                  : r,
+              pickups: (c.pickups ?? []).map((p) =>
+                p.id === action.payload.pickupId
+                  ? { ...p, date: action.payload.date }
+                  : p,
               ),
             }
           : c,
       );
 
-    case "RECALL_DELETED":
+    case "PICKUP_DELETED":
       return state.map((c) =>
         c.id === action.payload.clientId
           ? {
               ...c,
-              recalls: (c.recalls ?? []).filter(
-                (r) => r.id !== action.payload.recallId,
+              pickups: (c.pickups ?? []).filter(
+                (p) => p.id !== action.payload.pickupId,
               ),
             }
           : c,

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { RecallType } from "../../types";
-import RecallDate from "./RecallDate";
+import { PickupType } from "../../types";
+import PickupDate from "./PickupDate";
 
-function RecallHistory({ recalls, clientId }: { recalls?: RecallType[]; clientId: number }) {
+function PickupHistory({ pickups, clientId }: { pickups?: PickupType[]; clientId: number }) {
   const [showHistory, setShowHistory] = useState(false);
 
   return (
@@ -26,10 +26,10 @@ function RecallHistory({ recalls, clientId }: { recalls?: RecallType[]; clientId
 
       {showHistory && (
         <div className="ml-2 rounded-lg border border-black/10 bg-black/5 p-2">
-          {recalls?.length ? (
+          {pickups?.length ? (
             <div className="flex flex-col gap-1.5">
-              {recalls.map((recall) => (
-                <RecallDate key={recall.id} recall={recall} clientId={clientId} />
+              {pickups.map((pickup) => (
+                <PickupDate key={pickup.id} pickup={pickup} clientId={clientId} />
               ))}
             </div>
           ) : (
@@ -43,4 +43,4 @@ function RecallHistory({ recalls, clientId }: { recalls?: RecallType[]; clientId
   );
 }
 
-export default RecallHistory;
+export default PickupHistory;

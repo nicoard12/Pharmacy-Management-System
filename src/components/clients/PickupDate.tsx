@@ -1,48 +1,48 @@
-import { RecallType } from "../../types";
+import { PickupType } from "../../types";
 import {
-  updateRecallDate,
-  deleteRecall as deleteRecallApi,
-} from "../../api/recall";
+  updatePickupDate,
+  deletePickup as deletePickupApi,
+} from "../../api/pickup";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import ConfirmModal from "../ConfirmModal";
 import { formatToDateTimeLocal } from "../../utils/date";
 import { useClientsDispatch } from "../../context/ClientsContext";
 
-function RecallDate({
-  recall,
+function PickupDate({
+  pickup,
   clientId,
 }: {
-  recall: RecallType;
+  pickup: PickupType;
   clientId: number;
 }) {
-  const [date, setDate] = useState(formatToDateTimeLocal(recall.date));
+  const [date, setDate] = useState(formatToDateTimeLocal(pickup.date));
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const dispatch = useClientsDispatch();
 
   const handleCommit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const isoString = new Date(e.target.value).toISOString();
     try {
-      await updateRecallDate(recall.id, isoString);
+      await updatePickupDate(pickup.id, isoString);
     } catch (error) {
-      console.log("Error al actualizar la fecha del recall:", error);
+      console.log("Error al actualizar la fecha del retiro:", error);
     }
     dispatch({
-      type: "RECALL_DATE_UPDATED",
-      payload: { clientId, recallId: recall.id, date: isoString },
+      type: "PICKUP_DATE_UPDATED",
+      payload: { clientId, pickupId: pickup.id, date: isoString },
     });
   };
 
-  const deleteRecall = async () => {
+  const deletePickup = async () => {
     setDeleteModalOpen(false);
     try {
-      await deleteRecallApi(recall.id);
+      await deletePickupApi(pickup.id);
     } catch (error) {
-      console.log("Error al eliminar el recall:", error);
+      console.log("Error al eliminar el retiro:", error);
     }
     dispatch({
-      type: "RECALL_DELETED",
-      payload: { clientId, recallId: recall.id },
+      type: "PICKUP_DELETED",
+      payload: { clientId, pickupId: pickup.id },
     });
   };
 
@@ -68,11 +68,11 @@ function RecallDate({
         isOpen={deleteModalOpen}
         variant="danger"
         onCancel={() => setDeleteModalOpen(false)}
-        onConfirm={deleteRecall}
+        onConfirm={deletePickup}
         title="Confirmar eliminación"
         message="¿Estás seguro que deseas eliminar esta fecha de retiro? Esta acción no se puede deshacer."
       />
     </div>
   );
 }
-export default RecallDate;
+export default PickupDate;

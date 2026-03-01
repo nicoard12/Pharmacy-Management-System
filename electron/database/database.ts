@@ -20,12 +20,11 @@ db.exec(`
     prescriptions TEXT
   );
 
-  CREATE TABLE IF NOT EXISTS recalls (
+  CREATE TABLE IF NOT EXISTS pickups (
     id INTEGER PRIMARY KEY,
     clientId INTEGER NOT NULL,
     date TEXT NOT NULL,
     FOREIGN KEY (clientId) REFERENCES clients(id) ON DELETE CASCADE
   );
 `);
-
 

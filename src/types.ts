@@ -5,10 +5,10 @@ export type ClientType = {
   personInCharge?: string;
   phone?: string;
   email?: string;
-  recalls?: RecallType[];
+  pickups?: PickupType[];
 };
 
-export type RecallType = {
+export type PickupType = {
   id: number;
   date: string;
 };
@@ -18,6 +18,6 @@ export type ClientsAction =
   | { type: "CLIENT_CREATED"; payload: ClientType }
   | { type: "CLIENT_DELETED"; payload: { id: number } }
   | { type: "CLIENT_EDITED"; payload: ClientType }
-  | { type: "RECALL_CREATED"; payload: { clientId: number; recall: { id: number; date: string } } }
-  | { type: "RECALL_DATE_UPDATED"; payload: { clientId: number; recallId: number; date: string } }
-  | { type: "RECALL_DELETED"; payload: { clientId: number; recallId: number } };
+  | { type: "PICKUP_CREATED"; payload: { clientId: number; pickup: { id: number; date: string } } }
+  | { type: "PICKUP_DATE_UPDATED"; payload: { clientId: number; pickupId: number; date: string } }
+  | { type: "PICKUP_DELETED"; payload: { clientId: number; pickupId: number } };
